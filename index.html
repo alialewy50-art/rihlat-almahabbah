@@ -1,0 +1,1170 @@
+<!doctype html>
+<html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>رحلة المحبة</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@500;700&family=IBM+Plex+Sans+Arabic:wght@400;500;700&family=Amiri:wght@400;700&display=swap">
+<style>
+/* Layout: one narrow column like a booklet page; a growing tree marks progress through the 12 weeks of the campaign plan. */
+:root{
+  --paper:#F5F6F0; --card:#FFFFFF; --ink:#1C2A22; --muted:#5D6B61; --line:#DCE2D8;
+  --leaf:#2F6B4F; --leaf-soft:#E3EEE6; --fruit:#B9862A; --fruit-soft:#F6EBD4;
+  --ok:#2F7D4F; --ok-soft:#E1F2E6; --bad:#B2463A; --bad-soft:#F7E2DF;
+  --trunk:#7A5A3C;
+  --f-display:"Reem Kufi","IBM Plex Sans Arabic",Tahoma,sans-serif;
+  --f-body:"IBM Plex Sans Arabic",Tahoma,"Segoe UI",sans-serif;
+  --f-quote:"Amiri","Traditional Arabic",serif;
+  --r:14px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#121915; --card:#1A231D; --ink:#E7EDE8; --muted:#9DAAA1; --line:#2C3830;
+  --leaf:#6FB48D; --leaf-soft:#1F3328; --fruit:#E0B25A; --fruit-soft:#3A2F1A;
+  --ok:#6FC08D; --ok-soft:#1D3526; --bad:#E58475; --bad-soft:#3D2420; --trunk:#B08B66; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#121915; --card:#1A231D; --ink:#E7EDE8; --muted:#9DAAA1; --line:#2C3830;
+  --leaf:#6FB48D; --leaf-soft:#1F3328; --fruit:#E0B25A; --fruit-soft:#3A2F1A;
+  --ok:#6FC08D; --ok-soft:#1D3526; --bad:#E58475; --bad-soft:#3D2420; --trunk:#B08B66; color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{direction:rtl}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.75;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 96px}
+.wrap{max-width:640px;margin:0 auto;display:flex;flex-direction:column;gap:18px}
+h1,h2,h3{font-family:var(--f-display);font-weight:700;text-wrap:balance;margin:0;line-height:1.35}
+h1{font-size:2rem} h2{font-size:1.45rem} h3{font-size:1.1rem}
+p{margin:0}
+button{font:inherit;cursor:pointer}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--fruit);outline-offset:2px}
+.muted{color:var(--muted)}
+.small{font-size:.88rem}
+
+/* header */
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:16px 4px}
+.org{display:flex;align-items:center;gap:10px;min-width:0}
+.org-logo{width:46px;height:46px;border-radius:10px;border:1.5px dashed var(--line);display:grid;place-items:center;overflow:hidden;flex:none;font-size:.6rem;color:var(--muted);text-align:center;line-height:1.2;background:var(--card)}
+.org-logo img{width:100%;height:100%;object-fit:contain}
+.org-logo.has{border-style:solid}
+.org-name{font-size:.85rem;color:var(--muted);min-width:0}
+.score-pill{display:flex;align-items:center;gap:6px;background:var(--fruit-soft);color:var(--ink);border-radius:999px;padding:4px 12px;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.score-pill b{color:var(--fruit)}
+
+/* hero */
+.hero{text-align:center;display:flex;flex-direction:column;align-items:center;gap:6px;padding-block:8px 0}
+.hero .eyebrow{font-size:.85rem;color:var(--muted);letter-spacing:.02em}
+.hero h1{font-size:2.4rem;color:var(--leaf)}
+.slogan{font-family:var(--f-quote);font-size:1.5rem;color:var(--ink)}
+.poem{font-family:var(--f-quote);font-size:1.15rem;display:grid;grid-template-columns:1fr 1fr;gap:2px 18px;text-align:center;margin-top:6px;color:var(--muted)}
+@media (max-width:420px){.poem{grid-template-columns:1fr}}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px}
+.stack{display:flex;flex-direction:column;gap:12px}
+label{font-weight:500;font-size:.95rem}
+input[type=text],select{width:100%;font:inherit;padding:11px 12px;border:1px solid var(--line);border-radius:10px;background:var(--paper);color:var(--ink)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:999px;padding:7px 14px}
+.chip[aria-pressed="true"]{background:var(--leaf);border-color:var(--leaf);color:var(--card)}
+.btn{border:0;border-radius:12px;padding:13px 18px;background:var(--leaf);color:var(--card);font-weight:700;font-size:1.05rem}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.ghost{background:transparent;color:var(--leaf);border:1.5px solid var(--leaf)}
+.btn.gold{background:var(--fruit);color:#1C1408}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.row>.btn{flex:1 1 140px}
+.err{color:var(--bad);font-size:.9rem}
+
+/* tree */
+.tree-box{display:grid;grid-template-columns:150px 1fr;gap:16px;align-items:center}
+@media (max-width:420px){.tree-box{grid-template-columns:110px 1fr}}
+.tree-box svg{width:100%;height:auto;display:block}
+.progress-txt{display:flex;flex-direction:column;gap:6px;min-width:0}
+.bar{height:10px;background:var(--leaf-soft);border-radius:99px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--leaf);border-radius:99px;transition:width .5s}
+
+/* stations */
+.stations{display:flex;flex-direction:column;gap:10px}
+.st{display:grid;grid-template-columns:44px 1fr auto;gap:12px;align-items:center;text-align:right;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px;color:var(--ink);width:100%}
+.st:hover{border-color:var(--leaf)}
+.st .n{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--leaf-soft);color:var(--leaf);font-family:var(--f-display);font-weight:700;font-size:1.1rem}
+.st.done .n{background:var(--leaf);color:var(--card)}
+.st.full .n{background:var(--fruit);color:#1C1408}
+.st .t{display:flex;flex-direction:column;min-width:0}
+.st .t b{font-weight:700}
+.st .t span{font-size:.82rem;color:var(--muted)}
+.st .s{font-variant-numeric:tabular-nums;font-size:.85rem;color:var(--muted);white-space:nowrap}
+.st.bonus{border-style:dashed}
+.sec-h{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+
+/* lesson */
+.lesson{display:flex;flex-direction:column;gap:14px}
+.lesson ul,.lesson ol{margin:0;padding-inline-start:1.3em;display:flex;flex-direction:column;gap:6px}
+.lesson li::marker{color:var(--leaf);font-weight:700}
+.quote{font-family:var(--f-quote);font-size:1.25rem;line-height:1.9;background:var(--leaf-soft);border-radius:12px;padding:14px 16px}
+.quote small{display:block;font-family:var(--f-body);font-size:.8rem;color:var(--muted);margin-top:4px}
+.ayah{font-family:var(--f-quote);font-size:1.2rem;color:var(--leaf)}
+.term{font-weight:700;color:var(--leaf)}
+.src{font-size:.8rem;color:var(--muted);border-top:1px dashed var(--line);padding-top:10px}
+.word-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px}
+.word-grid span{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:6px 8px;text-align:center;font-family:var(--f-quote);font-size:1.1rem}
+.tree-parts{display:grid;grid-template-columns:auto 1fr;gap:6px 14px}
+.tree-parts dt{font-weight:700;color:var(--leaf)}
+.tree-parts dd{margin:0}
+
+/* quiz */
+.qhead{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:.88rem;color:var(--muted)}
+.dots{display:flex;gap:5px}
+.dots i{width:9px;height:9px;border-radius:50%;background:var(--line)}
+.dots i.on{background:var(--leaf)} .dots i.x{background:var(--bad)} .dots i.cur{outline:2px solid var(--fruit);outline-offset:1px}
+.qtype{font-size:.78rem;background:var(--fruit-soft);color:var(--ink);border-radius:6px;padding:2px 8px;font-weight:500;align-self:flex-start}
+.qtext{font-size:1.15rem;font-weight:700;line-height:1.7}
+.opts{display:flex;flex-direction:column;gap:9px}
+.opt{text-align:right;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);border-radius:12px;padding:12px 14px;line-height:1.6}
+.opt:hover:not(:disabled){border-color:var(--leaf)}
+.opt.ok{background:var(--ok-soft);border-color:var(--ok)}
+.opt.no{background:var(--bad-soft);border-color:var(--bad)}
+.opt:disabled{cursor:default}
+.tf{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tf .opt{text-align:center;font-weight:700}
+.ord-picked,.ord-pool{display:flex;flex-direction:column;gap:8px}
+.ord-picked{min-height:48px;border:1.5px dashed var(--line);border-radius:12px;padding:8px}
+.ord-picked:empty::before{content:"اضغط على العبارات بالترتيب الصحيح";color:var(--muted);font-size:.88rem;padding:4px}
+.ord-item{display:flex;gap:10px;align-items:center;text-align:right;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;padding:9px 12px}
+.ord-item .k{flex:none;width:24px;height:24px;border-radius:50%;background:var(--leaf);color:var(--card);display:grid;place-items:center;font-size:.8rem;font-weight:700}
+.ord-item.ok{background:var(--ok-soft);border-color:var(--ok)} .ord-item.no{background:var(--bad-soft);border-color:var(--bad)}
+.feedback{border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:4px}
+.feedback.ok{background:var(--ok-soft)} .feedback.no{background:var(--bad-soft)}
+.feedback b{font-family:var(--f-display)}
+.feedback .why{font-size:.92rem}
+
+/* result */
+.result{text-align:center;display:flex;flex-direction:column;align-items:center;gap:10px}
+.big{font-family:var(--f-display);font-size:3rem;color:var(--leaf);font-variant-numeric:tabular-nums;line-height:1.1}
+.badge{display:inline-flex;align-items:center;gap:8px;background:var(--fruit-soft);border-radius:999px;padding:6px 14px;font-weight:700}
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.bdg{display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;padding:12px 8px;border-radius:12px;border:1px solid var(--line);background:var(--card);font-size:.85rem}
+.bdg svg{width:40px;height:40px}
+.bdg.off{opacity:.38;filter:grayscale(1)}
+
+/* challenges */
+.ch{display:grid;grid-template-columns:28px 1fr;gap:10px;align-items:start;text-align:right;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:12px;padding:12px;width:100%}
+.ch .box{width:26px;height:26px;border-radius:8px;border:2px solid var(--leaf);display:grid;place-items:center;color:var(--card)}
+.ch[aria-pressed="true"]{background:var(--leaf-soft);border-color:var(--leaf)}
+.ch[aria-pressed="true"] .box{background:var(--leaf)}
+.ch small{display:block;color:var(--muted);font-size:.8rem}
+
+/* board */
+table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+th,td{padding:9px 6px;border-bottom:1px solid var(--line);text-align:right}
+th{font-size:.82rem;color:var(--muted);font-weight:500}
+td.num{text-align:left}
+.tbl{overflow-x:auto}
+.tabs{display:flex;gap:6px;background:var(--leaf-soft);padding:4px;border-radius:12px}
+.tabs button{flex:1;border:0;background:transparent;color:var(--ink);border-radius:9px;padding:8px}
+.tabs button[aria-selected="true"]{background:var(--card);font-weight:700;box-shadow:0 1px 2px rgba(0,0,0,.08)}
+
+/* certificate */
+#certCanvas{width:100%;height:auto;border-radius:10px;border:1px solid var(--line);display:block}
+
+/* bottom nav */
+nav.bottom{position:fixed;inset:auto 0 0 0;background:var(--card);border-top:1px solid var(--line);
+  padding:6px max(10px,env(safe-area-inset-right,0px)) calc(6px + env(safe-area-inset-bottom,0px)) max(10px,env(safe-area-inset-left,0px));z-index:5}
+nav.bottom .in{max-width:640px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
+nav.bottom button{border:0;background:transparent;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:2px;font-size:.78rem;padding:6px 2px;border-radius:10px}
+nav.bottom button svg{width:22px;height:22px}
+nav.bottom button[aria-current="page"]{color:var(--leaf);background:var(--leaf-soft);font-weight:700}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(84px + env(safe-area-inset-bottom,0px));background:var(--ink);color:var(--paper);padding:10px 16px;border-radius:12px;z-index:9;font-weight:500;max-width:90vw;text-align:center}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+.pop{animation:pop .45s ease}
+@keyframes pop{0%{transform:scale(.92);opacity:.4}100%{transform:scale(1);opacity:1}}
+</style><style>
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+@media (max-width:520px){.tiles{grid-template-columns:repeat(2,1fr)}}
+.tile{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.tile b{font-family:var(--f-display);font-size:1.7rem;line-height:1.2;color:var(--leaf);font-variant-numeric:tabular-nums}
+.tile span{font-size:.8rem;color:var(--muted)}
+.tile.gold b{color:var(--fruit)}
+.hbars{display:flex;flex-direction:column;gap:7px}
+.hbar{display:grid;grid-template-columns:minmax(0,9.5em) 1fr 3.2em;gap:8px;align-items:center;font-size:.85rem}
+.hbar .lbl{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hbar .trk{height:10px;background:var(--leaf-soft);border-radius:99px;overflow:hidden}
+.hbar .trk i{display:block;height:100%;background:var(--leaf);border-radius:99px}
+.hbar .v{text-align:left;font-variant-numeric:tabular-nums;color:var(--muted)}
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.cmp .tile b{font-size:1.35rem}
+.linkbox{display:flex;gap:8px;align-items:center;background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:8px 10px}
+.linkbox code{flex:1;min-width:0;overflow-x:auto;white-space:nowrap;font-size:.85rem;direction:ltr;text-align:left}
+.linkbox button{flex:none;border:0;background:var(--leaf);color:var(--card);border-radius:8px;padding:6px 12px;font-weight:700}
+.qr{display:grid;place-items:center;background:#fff;padding:12px;border-radius:12px;width:max-content;margin-inline:auto}
+.qr img,.qr canvas{width:180px;height:180px}
+.pill{display:inline-block;border-radius:99px;padding:1px 9px;font-size:.75rem;font-weight:700}
+.pill.dist{background:var(--fruit-soft);color:var(--ink)}
+.pill.done{background:var(--ok-soft);color:var(--ok)}
+.pill.off{background:var(--bad-soft);color:var(--bad)}
+.iconbtn{border:1px solid var(--line);background:var(--card);color:var(--bad);border-radius:8px;padding:3px 9px;font-size:.8rem}
+.iconbtn.ok{color:var(--leaf)}
+.confirm{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.code-big{font-family:var(--f-display);font-size:2rem;letter-spacing:.12em;direction:ltr;text-align:center;color:var(--fruit)}
+.logo-prev{width:64px;height:64px;border-radius:12px;border:1.5px dashed var(--line);display:grid;place-items:center;overflow:hidden;background:var(--paper);font-size:.7rem;color:var(--muted);flex:none}
+.logo-prev img{width:100%;height:100%;object-fit:contain}
+.filerow{display:flex;gap:12px;align-items:center}
+input[type=file]{font:inherit;font-size:.85rem;min-width:0;max-width:100%}
+input[type=password],input[inputmode]{width:100%;font:inherit;padding:11px 12px;border:1px solid var(--line);border-radius:10px;background:var(--paper);color:var(--ink)}
+.link{background:none;border:0;color:var(--leaf);text-decoration:underline;padding:0;font-size:.88rem}
+.demo-note{background:var(--fruit-soft);border-radius:10px;padding:8px 12px;font-size:.82rem}
+th.sort{cursor:pointer}
+th.sort::after{content:" ↕";color:var(--muted);font-size:.7rem}
+.tbl.wide table{min-width:600px}
+</style>
+</head><body>
+<div class="wrap" id="app">
+  <header class="top">
+    <a class="org" href="#" style="color:inherit;text-decoration:none">
+      <div class="org-logo" id="orgLogo"></div>
+      <div class="org-name" id="orgName"></div>
+    </a>
+    <div class="score-pill" id="scorePill" hidden>★ <b id="scoreVal">0</b> نقطة</div>
+  </header>
+  <main id="view" class="stack"></main>
+</div>
+<nav class="bottom" id="nav" hidden>
+  <div class="in">
+    <button data-go="map"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21V11"/><path d="M12 11c-4 0-6-3-6-6 3 0 6 2 6 6Zm0 0c4 0 6-3 6-6-3 0-6 2-6 6Z"/><path d="M8 21h8"/></svg>الرحلة</button>
+    <button data-go="challenges"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg>التحديات</button>
+    <button data-go="board"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 20V12M12 20V6M19 20v-5"/></svg>المنافسة</button>
+    <button data-go="cert"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="9" r="5"/><path d="m9 13-1.5 8L12 19l4.5 2L15 13"/></svg>الشهادة</button>
+  </div>
+</nav>
+<div class="toast" id="toast" hidden></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+/* ================= الإعدادات =================
+   api: رابط تطبيق الويب من Apps Script (ينتهي بـ /exec). إذا تُرك فارغًا تعمل الصفحة بوضع تجريبي على هذا الجهاز فقط. */
+const CONFIG = {
+  api: "https://script.google.com/macros/s/AKfycbwYgfONOWDJpYav-YlAcvObwVyNKiPpcXgQrYhoHP-tMUgb_rAQPX7kBMoiugY9sxIKHg/exec",
+  siteName: "رحلة المحبة"
+};
+
+const STATIONS = [
+{id:"s1", title:"الشعار وعناصر الموضوع", week:"الأسبوع الأول", lesson:`
+<p>شعار الحملة:</p>
+<div class="quote">إن المحب لمن يحب مطيع</div>
+<div class="quote">تعصي الإله وأنت تزعم حبه &nbsp;·&nbsp; هذا محالٌ في القياس شنيعُ<br>لو كان حبك صادقًا لأطعته &nbsp;·&nbsp; إن المحب لمن يحب مطيعُ</div>
+<p><span class="term">فكرة الحملة:</span> تخصيص فترة لا تقل عن ٣ شهور للحديث عن موضوع معين مثل (محبة الله)، بحيث تقوم الجهة المعنية بالتوعية بالتركيز على هذا الموضوع في كل برامجها (الكلمات - المحاضرات - الدروس - خطب الجمعة - المسابقات) خلال فترة الحملة.</p>
+<p><span class="term">سبب اختيار الموضوع:</span> لأن مكاتب الدعوة هدفها الأساس هو التعريف بالله عز وجل ودلالة الناس على حب الله وإرشادهم لكل عمل يزيدهم معرفة بالله جل جلاله. ولأننا في زمن قد اشتغل الناس بحب الدنيا وانصرفوا لحب الشهرة والتعلق بالأشخاص. فإن القلوب لابد لها من متعلق تتعلق به.</p>
+<p><span class="term">عناصر موضوع الحملة (١١ عنصرًا):</span></p>
+<ol><li>معنى محبة الله</li><li>أقوال العلماء في محبة الله (٥)</li><li>أنواع محبة الله (٣)</li><li>أهمية محبة الله (٦)</li><li>مظاهر محبة الله (٥)</li><li>ثمار محبة الله (٣)</li><li>الأسباب الجالبة لمحبة الله (١٠)</li><li>علامات محبة الله (٧)</li><li>صفات من يحبهم الله (٨)</li><li>صفات من لا يحبهم الله (٩)</li><li>موانع تمنع المحبة وتضعفها (٩)</li></ol>`,
+q:[
+{t:"mcq",q:"ما شعار حملة التوعية بمحبة الله؟",o:["إن المحب لمن يحب مطيع","المرء مع من أحب","الله الذي خلقك ألا يُحب","محبة الله أصل الإيمان"],a:"إن المحب لمن يحب مطيع",why:"الشعار: «إن المحب لمن يحب مطيع»."},
+{t:"ord",q:"رتّب أبيات الشعار كما وردت في الملف:",items:["تعصي الإله وأنت تزعم حبه","هذا محالٌ في القياس شنيعُ","لو كان حبك صادقًا لأطعته","إن المحب لمن يحب مطيعُ"],why:"تعصي الإله وأنت تزعم حبه، هذا محال في القياس شنيع، لو كان حبك صادقًا لأطعته، إن المحب لمن يحب مطيع."},
+{t:"mcq",q:"أكمل: «لو كان حبك صادقًا ...»",o:["لأطعته","لذكرته","لشكرته","لخشيته"],a:"لأطعته",why:"«لو كان حبك صادقًا لأطعته»."},
+{t:"mcq",q:"ما المدة المقترحة لفترة الحملة؟",o:["لا تقل عن ٣ شهور","أسبوع واحد","شهر واحد","سنة كاملة"],a:"لا تقل عن ٣ شهور",why:"فكرة الحملة: تخصيص فترة لا تقل عن ٣ شهور للحديث عن موضوع معين."},
+{t:"tf",q:"عدد عناصر موضوع الحملة أحد عشر عنصرًا.",a:true,why:"عناصر الموضوع ١١ عنصرًا، من معنى محبة الله إلى موانع تمنع المحبة وتضعفها."},
+{t:"tf",q:"من أسباب اختيار الموضوع أن القلوب لابد لها من متعلق تتعلق به.",a:true,why:"ورد في التعريف بالحملة: «فإن القلوب لابد لها من متعلق تتعلق به»."}
+]},
+
+{id:"s2", title:"معنى محبة الله", week:"الأسبوع الثاني", lesson:`
+<p>قال ابن القيم -رحمه الله-:</p>
+<div class="quote">«فالمحبة شجرة في القلب، عروقها الذل للمحبوب، وساقها معرفته، وأغصانها خشيته، وورقها الحياء منه، وثمرتها طاعته، ومادتها التي تسقيها ذكره، فمتى خلا الحب عن شيء من ذلك كان ناقصًا»</div>
+<dl class="tree-parts">
+<dt>العروق</dt><dd>الذل للمحبوب</dd>
+<dt>الساق</dt><dd>معرفته</dd>
+<dt>الأغصان</dt><dd>خشيته</dd>
+<dt>الورق</dt><dd>الحياء منه</dd>
+<dt>الثمرة</dt><dd>طاعته</dd>
+<dt>المادة التي تسقيها</dt><dd>ذكره</dd>
+</dl>`,
+q:[
+{t:"mcq",q:"شبّه ابن القيم المحبة بـ:",o:["شجرة في القلب","نور في الوجه","سرٍّ بين القلوب","جنود مجندة"],a:"شجرة في القلب",why:"«فالمحبة شجرة في القلب...»."},
+{t:"mcq",q:"ما ثمرة شجرة المحبة؟",o:["طاعته","معرفته","خشيته","الحياء منه"],a:"طاعته",why:"«وثمرتها طاعته»."},
+{t:"mcq",q:"ما المادة التي تسقي شجرة المحبة؟",o:["ذكره","معرفته","الذل للمحبوب","خشيته"],a:"ذكره",why:"«ومادتها التي تسقيها ذكره»."},
+{t:"ord",q:"رتّب أجزاء شجرة المحبة من الأسفل إلى الأعلى:",items:["العروق: الذل للمحبوب","الساق: معرفته","الأغصان: خشيته","الورق: الحياء منه","الثمرة: طاعته"],why:"عروقها الذل للمحبوب، وساقها معرفته، وأغصانها خشيته، وورقها الحياء منه، وثمرتها طاعته."},
+{t:"tf",q:"إذا خلا الحب عن شيء من أجزاء الشجرة بقي كاملًا.",a:false,why:"«فمتى خلا الحب عن شيء من ذلك كان ناقصًا»."}
+]},
+
+{id:"s3", title:"الأقوال في محبة الله", week:"الأسبوع الثالث", lesson:`
+<ul>
+<li>من أوصاف المؤمنين الصادقين محبتهم لله. <span class="ayah">﴿وَالَّذِينَ آمَنُوا أَشَدُّ حُبًّا لِلَّهِ﴾</span> [البقرة: ١٦٥]</li>
+<li>الله جل وعلا قرن محبته لعباده المخلصين بمحبتهم له. <span class="ayah">﴿يُحِبُّهُمْ وَيُحِبُّونَهُ﴾</span> [المائدة: ٥٤]</li>
+<li>محبة العبد لربه يجب أن تكون أعظم وأشد محبة.</li>
+<li>من أحب غير الله كحب الله فقد أشرك. <span class="ayah">﴿وَمِنَ النَّاسِ مَنْ يَتَّخِذُ مِنْ دُونِ اللَّهِ أَنْدَادًا يُحِبُّونَهُمْ كَحُبِّ اللَّهِ﴾</span> [البقرة: ١٦٥]</li>
+<li>محبة الله شرط من شروط كلمة التوحيد (لا إله إلا الله).</li>
+</ul>
+<div class="quote">قال رسول الله ﷺ: «لا يؤمن أحدكم حتى أكون أحب إليه من ولده ووالده والناس أجمعين» <small>متفق عليه</small></div>`,
+q:[
+{t:"mcq",q:"محبة الله شرط من شروط:",o:["كلمة التوحيد (لا إله إلا الله)","قبول الأعمال الظاهرة فقط","حب الرئاسة","الجدال والمراء"],a:"كلمة التوحيد (لا إله إلا الله)",why:"«محبة الله شرط من شروط كلمة التوحيد (لا إله إلا الله)»."},
+{t:"tf",q:"من أحب غير الله كحب الله فقد أشرك.",a:true,why:"ورد ذلك مع قوله تعالى: ﴿وَمِنَ النَّاسِ مَنْ يَتَّخِذُ مِنْ دُونِ اللَّهِ أَنْدَادًا يُحِبُّونَهُمْ كَحُبِّ اللَّهِ﴾."},
+{t:"mcq",q:"في أي سورة قوله تعالى: ﴿يُحِبُّهُمْ وَيُحِبُّونَهُ﴾ كما في الملف؟",o:["المائدة: ٥٤","البقرة: ١٦٥","فاطر: ٣٢","البقرة: ٥٤"],a:"المائدة: ٥٤",why:"﴿يُحِبُّهُمْ وَيُحِبُّونَهُ﴾ [المائدة: ٥٤]."},
+{t:"mcq",q:"أكمل الحديث: «لا يؤمن أحدكم حتى أكون أحب إليه من ...»",o:["ولده ووالده والناس أجمعين","ماله وجاهه","نفسه فقط","الدنيا وما فيها"],a:"ولده ووالده والناس أجمعين",why:"«لا يؤمن أحدكم حتى أكون أحب إليه من ولده ووالده والناس أجمعين» متفق عليه."},
+{t:"tf",q:"يجوز أن تتساوى محبة العبد لربه مع محبته لغيره.",a:false,why:"«محبة العبد لربه يجب أن تكون أعظم وأشد محبة»."}
+]},
+
+{id:"s4", title:"أنواع محبة الله", week:"الأسبوع الرابع", lesson:`
+<p><span class="term">١- من حيث أحوال المحبين لله:</span> فالناس يتفاوتون بالأعمال الصالحة فمنهم السابق، ومنهم المقتصد. قال تعالى: <span class="ayah">﴿ثُمَّ أَوْرَثْنَا الْكِتَابَ الَّذِينَ اصْطَفَيْنَا مِنْ عِبَادِنَا فَمِنْهُمْ ظَالِمٌ لِنَفْسِهِ وَمِنْهُمْ مُقْتَصِدٌ وَمِنْهُمْ سَابِقٌ بِالْخَيْرَاتِ بِإِذْنِ اللَّهِ ذَلِكَ هُوَ الْفَضْلُ الْكَبِيرُ﴾</span> [فاطر: ٣٢]. فالمقتصد قد اقتصر على أداء الواجبات، وانتهى عن فعل المحرمات، فمحبته تابعة لعمله الذي قام به، وهي المحبة الواجبة، أما السابق الذي زاد على الواجبات، وهو القيام بالنوافل حتى أحبه المولى، فإن محبته لله أرفع.</p>
+<p><span class="term">٢- من حيث المحبوب:</span> قال ابن القيم -رحمه الله-: «فالمحبة النافعة ثلاثة أنواع: محبة الله، ومحبة في الله، ومحبة ما يعين على طاعة الله تعالى واجتناب معصيته».</p>
+<p><span class="term">٣- من حيث الحب نفسه:</span> ثلاثة أقسام: حبٌّ إلهيٌّ، وحبٌّ روحانيٌّ، وحبٌّ طبيعيٌّ. «فحب الله العبد حبٌّ إلهي، وحب جبريل والملائكة له حبٌّ روحاني، وحب العباد له حبٌّ طبيعي».</p>`,
+q:[
+{t:"mcq",q:"من اقتصر على أداء الواجبات وانتهى عن فعل المحرمات هو:",o:["المقتصد","السابق","الظالم لنفسه","المتوكل"],a:"المقتصد",why:"«فالمقتصد قد اقتصر على أداء الواجبات، وانتهى عن فعل المحرمات... وهي المحبة الواجبة»."},
+{t:"tf",q:"السابق الذي زاد على الواجبات بالقيام بالنوافل محبته لله أرفع.",a:true,why:"«أما السابق الذي زاد على الواجبات، وهو القيام بالنوافل حتى أحبه المولى، فإن محبته لله أرفع»."},
+{t:"mcq",q:"حب جبريل والملائكة للعبد يسمى:",o:["حبًّا روحانيًّا","حبًّا إلهيًّا","حبًّا طبيعيًّا","محبة واجبة"],a:"حبًّا روحانيًّا",why:"«وحب جبريل والملائكة له حبٌّ روحاني»."},
+{t:"mcq",q:"أيّ مما يلي ليس من أنواع المحبة النافعة عند ابن القيم؟",o:["حب الدنيا","محبة الله","محبة في الله","محبة ما يعين على طاعة الله"],a:"حب الدنيا",why:"المحبة النافعة: محبة الله، ومحبة في الله، ومحبة ما يعين على طاعة الله واجتناب معصيته. وحب الدنيا من مفسدات القلوب."},
+{t:"mcq",q:"كم وجهًا لتقسيم أنواع محبة الله في الملف؟",o:["٣","٢","٥","٧"],a:"٣",why:"من حيث أحوال المحبين، ومن حيث المحبوب، ومن حيث الحب نفسه."}
+]},
+
+{id:"s5", title:"أهمية محبة الله", week:"الشهر الثاني · الأسبوع الأول", lesson:`
+<ol>
+<li><span class="term">الله عز وجل هو المستحق وحده للحب.</span> فهو المستحق لأن يحب على الحقيقة والكمال، وإنكار محبة العبد لربه هو في الحقيقة إنكار لكونه إلهًا معبودًا.</li>
+<li><span class="term">محبة الله من أعظم أعمال القلوب وأرفعها درجة عند الله -عز وجل-.</span> والعمل تبعٌ للمحبة، فإذا كانت المحبة ليس أصلها محبة الله فهي باطلة، وكذلك العمل إن لم يكن المراد منه وجه الله فهو باطل.</li>
+<li><span class="term">محبة الله هي أصل الإيمان.</span> قال ابن تيمية -رحمه الله-: محبة الله ورسوله من أعظم واجبات الإيمان وأكبر أصوله وأجل قواعده. بل هي أصل كل عمل من أعمال الإيمان والدين.</li>
+<li><span class="term">محبة الله سعادة الدنيا والآخرة.</span> «قال بعض العارفين: والله ما طابت الدنيا إلا بمحبته وطاعته، ولا الجنة إلا برؤيته ومشاهدته».</li>
+<li><span class="term">محبة الله من موجبات الجنة.</span> عن أنس -رضي الله عنه-: أن رجلًا سأل النبي ﷺ عن الساعة فقال: متى الساعة؟ قال: «وماذا أعددت لها»، قال: لا شيء إلا أني أحب الله ورسوله ﷺ فقال: «أنت مع من أحببت».</li>
+<li><span class="term">أعمال القلوب أفضل من أعمال الجوارح.</span> قال ابن تيمية -رحمه الله-: «والأعمال الظاهرة تدخلها آفاتٌ كثيرةٌ، وما لم تسلم منها لم تكن مقبولة ولهذا كانت أعمال القلب المجردة أفضل من أعمال البدن المجردة».</li>
+</ol>`,
+q:[
+{t:"mcq",q:"أكمل قول بعض العارفين: «والله ما طابت الدنيا إلا ...»",o:["بمحبته وطاعته","بالمال والجاه","بكثرة الأصحاب","بالشهرة"],a:"بمحبته وطاعته",why:"«والله ما طابت الدنيا إلا بمحبته وطاعته، ولا الجنة إلا برؤيته ومشاهدته»."},
+{t:"mcq",q:"في حديث أنس، عن أي شيء سأل الرجلُ النبيَّ ﷺ؟",o:["عن الساعة","عن الصلاة","عن الصدقة","عن الجهاد"],a:"عن الساعة",why:"«أن رجلًا سأل النبي ﷺ عن الساعة فقال: متى الساعة؟»."},
+{t:"tf",q:"العمل تبعٌ للمحبة.",a:true,why:"«والعمل تبعٌ للمحبة، فإذا كانت المحبة ليس أصلها محبة الله فهي باطلة»."},
+{t:"tf",q:"أعمال البدن المجردة أفضل من أعمال القلب المجردة.",a:false,why:"قال ابن تيمية: «ولهذا كانت أعمال القلب المجردة أفضل من أعمال البدن المجردة»."},
+{t:"mcq",q:"قال ابن تيمية: محبة الله ورسوله من أعظم ...",o:["واجبات الإيمان","أعمال الجوارح","المستحبات","العادات"],a:"واجبات الإيمان",why:"«محبة الله ورسوله من أعظم واجبات الإيمان وأكبر أصوله وأجل قواعده»."},
+{t:"mcq",q:"إنكار محبة العبد لربه هو في الحقيقة إنكار ...",o:["لكونه إلهًا معبودًا","لأعمال الجوارح","للعلم","للصبر"],a:"لكونه إلهًا معبودًا",why:"«وإنكار محبة العبد لربه هو في الحقيقة إنكار لكونه إلهًا معبودًا»."}
+]},
+
+{id:"s6", title:"مظاهر محبة الله", week:"الشهر الثاني · الأسبوع الثاني", lesson:`
+<ol>
+<li><span class="term">متابعة النبي ﷺ</span> في كل ما أمر ونهى، فإن ذلك هو البرهان الساطع والدليل الواضح، على محبة الله ورسوله.</li>
+<li><span class="term">إفراد الله بالعبودية، والتحقق بمقامات الإيمان:</span> وقال ابن القيم «وكلما تمكنت محبة الله من القلب، وقويت فيه أخرجت منه تألهه لما سواه وعبوديته له».</li>
+<li><span class="term">المبادرة إلى الطاعات واجتناب المعاصي والمنكرات.</span></li>
+<li><span class="term">محبة من أحبه الله، وبغض من أبغضه الله،</span> وكراهية العودة في الكفر، كما يكره أن يقذف في النار، فإن ذلك من أعظم مظاهر محبة الله.</li>
+<li><span class="term">الرحمة والشفقة بالمؤمنين، والعزة والشدة على الكافرين، والجهاد في سبيل الله.</span></li>
+</ol>`,
+q:[
+{t:"mcq",q:"ما البرهان الساطع والدليل الواضح على محبة الله ورسوله؟",o:["متابعة النبي ﷺ في كل ما أمر ونهى","كثرة الكلام عن المحبة","حب الرئاسة","الجدال والمراء"],a:"متابعة النبي ﷺ في كل ما أمر ونهى",why:"«متابعة النبي ﷺ في كل ما أمر ونهى، فإن ذلك هو البرهان الساطع والدليل الواضح، على محبة الله ورسوله»."},
+{t:"mcq",q:"أيّ مما يلي من مظاهر محبة الله؟",o:["المبادرة إلى الطاعات واجتناب المعاصي والمنكرات","الغفلة عن ذكر الله","الشح بالمال ومنعه عن الفقراء","الرياء وإرادة الدنيا في عمل الآخرة"],a:"المبادرة إلى الطاعات واجتناب المعاصي والمنكرات",why:"المبادرة إلى الطاعات من المظاهر، أما الخيارات الأخرى فهي من الموانع التي تمنع المحبة وتضعفها."},
+{t:"tf",q:"كراهية العودة في الكفر كما يكره أن يقذف في النار من أعظم مظاهر محبة الله.",a:true,why:"«...وكراهية العودة في الكفر، كما يكره أن يقذف في النار، فإن ذلك من أعظم مظاهر محبة الله»."},
+{t:"mcq",q:"قال ابن القيم: «وكلما تمكنت محبة الله من القلب وقويت فيه أخرجت منه ...»",o:["تألهه لما سواه وعبوديته له","حلاوة الإيمان","الحياء منه","ذكره"],a:"تألهه لما سواه وعبوديته له",why:"«أخرجت منه تألهه لما سواه وعبوديته له»."},
+{t:"mcq",q:"كم عدد مظاهر محبة الله في الملف؟",o:["٥","٣","٧","٩"],a:"٥",why:"مظاهر محبة الله (٥)."}
+]},
+
+{id:"s7", title:"ثمار محبة الله", week:"الشهر الثاني · الأسبوع الثالث", lesson:`
+<ol>
+<li><span class="term">استشعار حلاوة الإيمان في القلب:</span> فمتى أحب المسلمُ ربَّه ونبيَّه حبًّا صادقًا خالصًا، وجد للإيمان حلاوة ولذة في قلبه.</li>
+<li><span class="term">حب الطاعات، وعمل كل ما يحبه الله ورسوله:</span> فإن العبد إذا أخلص الحب لربه جل وعلا، فإنه يتفانى في طاعته، ويُسرِع في تنفيذ أوامره وفرائضه، وربما لا يكتفي بذلك؛ بل إنه يُكثِر من النوافل والسُّنن وأعمال البر والخير؛ إرضاءً لربه.</li>
+<li><span class="term">يحبه أهل السماء، ويوضع له القَبول في الأرض:</span> وهذا لا يُشترى بالمال؛ لكنه سِرٌّ وروح تسري بين القلوب، فتتآلف وتتحابُّ بروح الله؛ فالأرواح جندٌ مجنَّدة، ما تعارف منها ائتلف.</li>
+</ol>`,
+q:[
+{t:"tf",q:"من ثمار محبة الله استشعار حلاوة الإيمان في القلب.",a:true,why:"«فمتى أحب المسلم ربه ونبيه حبًّا صادقًا خالصًا، وجد للإيمان حلاوة ولذة في قلبه»."},
+{t:"mcq",q:"القَبول في الأرض لمن يحبه الله:",o:["لا يُشترى بالمال","يُشترى بالمال","يأتي بالشهرة","يأتي بحب الرئاسة"],a:"لا يُشترى بالمال",why:"«وهذا لا يُشترى بالمال؛ لكنه سِرٌّ وروح تسري بين القلوب»."},
+{t:"mcq",q:"أكمل: «فالأرواح جندٌ مجنَّدة، ما تعارف منها ...»",o:["ائتلف","اختلف","افترق","ابتعد"],a:"ائتلف",why:"«فالأرواح جندٌ مجنَّدة، ما تعارف منها ائتلف»."},
+{t:"mcq",q:"العبد إذا أخلص الحب لربه:",o:["يتفانى في طاعته ويسرع في تنفيذ أوامره","يكتفي بالكلام عن المحبة","يترك النوافل","ينشغل بحب الدنيا"],a:"يتفانى في طاعته ويسرع في تنفيذ أوامره",why:"«فإنه يتفانى في طاعته، ويُسرِع في تنفيذ أوامره وفرائضه»."},
+{t:"mcq",q:"كم عدد ثمار محبة الله في الملف؟",o:["٣","٥","٦","١٠"],a:"٣",why:"ثمار محبة الله (٣)."}
+]},
+
+{id:"s8", title:"الأسباب الجالبة للمحبة", week:"الشهر الثاني · الأسبوع الرابع", lesson:`
+<ol>
+<li>قراءة القرآن بالتدبر والتفهم لمعانيه وما أريد به.</li>
+<li>التقرب إلى الله بالنوافل بعد الفرائض.</li>
+<li>دوام ذكره على كل حال.</li>
+<li>إيثار محبته على محابِّك.</li>
+<li>مطالعة القلب لأسماء الله وصفاته فمَن عرف الله وصفاتِه وأفعاله، أحبه لا محالة.</li>
+<li>مشاهدة بِرّه وإحسانه وآلائه ونِعَمِه الظاهرة والباطنة.</li>
+<li>انكسار القلب بين يدي الله تعالى.</li>
+<li>الخَلْوة به وقت النزول الإلهي.</li>
+<li>مجالسة المحبين الصادقين.</li>
+<li>مباعدة كل سبب يحول بين القلب وبين الله.</li>
+</ol>
+<p class="muted small">هذه الأسباب العشرة هي نفسها «تحديات اليوم» في تبويب التحديات.</p>`,
+q:[
+{t:"mcq",q:"أكمل: «التقرب إلى الله بالنوافل بعد ...»",o:["الفرائض","الطعام","النوم","العمل"],a:"الفرائض",why:"«التقرب إلى الله بالنوافل بعد الفرائض»."},
+{t:"mcq",q:"الخَلْوة به وقت ...",o:["النزول الإلهي","الظهيرة","السفر","الضيق فقط"],a:"النزول الإلهي",why:"«الخَلْوة به وقت النزول الإلهي»."},
+{t:"mcq",q:"أيّ مما يلي من الأسباب الجالبة للمحبة؟",o:["مجالسة المحبين الصادقين","مصاحبة أهل الغفلة والفساد","هجر كلام الرحمن","حب النفس وترك النصح للخلق"],a:"مجالسة المحبين الصادقين",why:"مجالسة المحبين الصادقين سبب جالب، والبقية من الموانع."},
+{t:"tf",q:"من عرف الله وصفاته وأفعاله أحبه لا محالة.",a:true,why:"«مطالعة القلب لأسماء الله وصفاته فمَن عرف الله وصفاتِه وأفعاله، أحبه لا محالة»."},
+{t:"mcq",q:"قراءة القرآن الجالبة للمحبة تكون:",o:["بالتدبر والتفهم لمعانيه وما أريد به","بالسرعة لختمه فقط","بلا تفكر","في رمضان فقط"],a:"بالتدبر والتفهم لمعانيه وما أريد به",why:"«قراءة القرآن بالتدبر والتفهم لمعانيه وما أريد به»."},
+{t:"mcq",q:"كم عدد الأسباب الجالبة لمحبة الله في الملف؟",o:["١٠","٧","٨","٥"],a:"١٠",why:"الأسباب الجالبة لمحبة الله (١٠)."}
+]},
+
+{id:"s9", title:"علامات محبة الله", week:"الشهر الثالث · الأسبوع الأول", lesson:`
+<ol>
+<li><span class="term">هداية الله للعبد؛</span> وهو من أعظم الدلائل على محبة الله للعبد، بحيث يهتدي بهداية الله ويلتزم طاعته، فالله -تعالى- يهب الدنيا لمن يحب ويكره، ولا يهب الآخرة إلا لمن يحب.</li>
+<li><span class="term">حفظ الله تعالى لمن يحبهم،</span> وتيسير أمورهم والخير لهم، وإن أراد العبد فعل المعصية وجد الحفظ والصيانة من الله.</li>
+<li><span class="term">العلم؛</span> فليس أحب إلى الله بعد أنبيائه من العلماء العاملون بما يعلمون، والذين يجتهدون بتحصيل العلم فينتفعون به بتطبيقه، وينفعون الناس بنشر ما يتعلمون بينهم.</li>
+<li><span class="term">التوفيق للأمر بالمعروف والنهي عن المنكر.</span></li>
+<li><span class="term">الحرص على طاعة الله تعالى.</span></li>
+<li><span class="term">رضا الله تعالى على من يحب.</span> فالله لا يسخط أبدًا على من يحبه.</li>
+<li><span class="term">عدم الخوف إلا من الله تعالى،</span> والقتال في سبيله، والغلظة على الكفار، واللّين على المؤمنين.</li>
+</ol>`,
+q:[
+{t:"mcq",q:"الله تعالى يهب الدنيا لمن يحب ويكره، ولا يهب الآخرة إلا ...",o:["لمن يحب","لمن يكره","للأغنياء","لمن طلبها بالمال"],a:"لمن يحب",why:"«فالله -تعالى- يهب الدنيا لمن يحب ويكره، ولا يهب الآخرة إلا لمن يحب»."},
+{t:"mcq",q:"ليس أحب إلى الله بعد أنبيائه من:",o:["العلماء العاملين بما يعلمون","أصحاب المال","أصحاب الرئاسة","أصحاب الشهرة"],a:"العلماء العاملين بما يعلمون",why:"«فليس أحب إلى الله بعد أنبيائه من العلماء العاملون بما يعلمون»."},
+{t:"tf",q:"الله قد يسخط على من يحبه.",a:false,why:"«فالله لا يسخط أبدًا على من يحبه»."},
+{t:"mcq",q:"ما أعظم الدلائل على محبة الله للعبد كما في العلامة الأولى؟",o:["هداية الله للعبد","كثرة المال","طول العمر","كثرة الأصحاب"],a:"هداية الله للعبد",why:"«هداية الله للعبد؛ وهو من أعظم الدلائل على محبة الله للعبد»."},
+{t:"tf",q:"من علامات محبة الله التوفيق للأمر بالمعروف والنهي عن المنكر.",a:true,why:"العلامة الرابعة: التوفيق للأمر بالمعروف والنهي عن المنكر."}
+]},
+
+{id:"s10", title:"صفات من يحبهم الله", week:"الشهر الثالث · الأسبوع الثاني", lesson:`
+<ol>
+<li><span class="term">المحسنون:</span> وذلك بإتقان العبد للعمل الذي كلَّفه الله به، بأن يأتي به صحيحًا خالصًا لوجه الله - عز وجل - متابِعًا فيه لسنَّة رسول الله.</li>
+<li><span class="term">المتقون:</span> التقوى أن تعمل بطاعة الله، على نور من الله، ترجو ثواب الله، وأن تترك معصية الله، على نور مِن الله، تَخاف عقاب الله.</li>
+<li><span class="term">المقسطون:</span> أهل العدل والاستقامة والإنصاف.</li>
+<li><span class="term">التوابون:</span> التائب كثير الرجوع إلى الله من معصيته إلى طاعته.</li>
+<li><span class="term">المتطهرون:</span> الذين يبتعدون عن الفواحش والأقذار، والمتطهرون من الجنابة والحدث، والتاركون للذنوب العاملون بالصلاح.</li>
+<li><span class="term">الصابرون:</span> الصبر حبْس النفس عن الجزَع والتسخُّط، وحبس اللسان عن الشكوى، وحبس الجوارح عن الإتيان بأي عملٍ يُنافي الصبر.</li>
+<li><span class="term">المتوكلون:</span> التوكل معناه صدق اعتماد القلب على الله في استجلاب المصالح ودفع المضارّ، من أمور الدنيا والآخرة.</li>
+<li><span class="term">الذين يُقاتلون في سبيل الله صفًّا.</span></li>
+</ol>`,
+q:[
+{t:"mcq",q:"«أهل العدل والاستقامة والإنصاف» هم:",o:["المقسطون","المتوكلون","المحسنون","المتطهرون"],a:"المقسطون",why:"«المقسطون: أهل العدل والاستقامة والإنصاف»."},
+{t:"mcq",q:"«كثير الرجوع إلى الله من معصيته إلى طاعته» وصفٌ لـ:",o:["التوابين","الصابرين","المتقين","المقسطين"],a:"التوابين",why:"«التوابون: التائب كثير الرجوع إلى الله من معصيته إلى طاعته»."},
+{t:"mcq",q:"«صدق اعتماد القلب على الله في استجلاب المصالح ودفع المضار» هو معنى:",o:["التوكل","الإحسان","التقوى","الصبر"],a:"التوكل",why:"«التوكل معناه صدق اعتماد القلب على الله في استجلاب المصالح ودفع المضارّ»."},
+{t:"mcq",q:"الصبر حبس النفس عن ...",o:["الجزع والتسخط","الطعام والشراب","الكلام كله","العمل"],a:"الجزع والتسخط",why:"«الصبر حبْس النفس عن الجزَع والتسخُّط، وحبس اللسان عن الشكوى...»."},
+{t:"tf",q:"الإحسان: إتقان العبد للعمل الذي كلفه الله به، صحيحًا خالصًا لوجه الله متابعًا فيه لسنة رسول الله.",a:true,why:"هذا تعريف المحسنين كما ورد في الملف."},
+{t:"mcq",q:"كم صفة لمن يحبهم الله في الملف؟",o:["٨","٩","٧","١٠"],a:"٨",why:"صفات من يحبهم الله (٨)."}
+]},
+
+{id:"s11", title:"صفات من لا يحبهم الله", week:"الشهر الثالث · الأسبوع الثالث", lesson:`
+<ol>
+<li><span class="term">المعتدون:</span> الاعتداء: تجاوز الحدِّ في كل شيء.</li>
+<li><span class="term">الظالمون:</span> الظلم مجاوَزة الحق، والتعدي على الآخرين في أموالهم أو أعراضهم.</li>
+<li><span class="term">المختال الفخور:</span> هو المختال المتكبر في هيئته، والفخور المتكبر في أقواله.</li>
+<li><span class="term">المفسدون:</span> الفساد هو العُدول عن الاستقامة.</li>
+<li><span class="term">الكافرون:</span> الكفر هو جحد شيئًا مما افترض الله عليه.</li>
+<li><span class="term">الخائنون:</span> هم الغادرون في عهودهم.</li>
+<li><span class="term">المسرفون:</span> الإسراف هو مُجاوزة الحَدِّ في كل ما يفعله الإنسان.</li>
+<li><span class="term">المستكبرون:</span> الاستكبار الامتناع عن قبول الحق مُعاندةً وتكبُّرًا.</li>
+<li><span class="term">الفَرِحُون:</span> الفرح الذي يصحبه الكبر والبغي على الناس والعدوان والبطر.</li>
+</ol>`,
+q:[
+{t:"mcq",q:"المتكبر في هيئته هو:",o:["المختال","الفخور","المسرف","المعتدي"],a:"المختال",why:"«المختال المتكبر في هيئته، والفخور المتكبر في أقواله»."},
+{t:"mcq",q:"«الغادرون في عهودهم» هم:",o:["الخائنون","المفسدون","الظالمون","المسرفون"],a:"الخائنون",why:"«الخائنون: هم الغادرون في عهودهم»."},
+{t:"mcq",q:"«الامتناع عن قبول الحق معاندةً وتكبرًا» هو:",o:["الاستكبار","الإسراف","الاعتداء","الفساد"],a:"الاستكبار",why:"«المستكبرون: الاستكبار الامتناع عن قبول الحق مُعاندةً وتكبُّرًا»."},
+{t:"tf",q:"الفساد هو العدول عن الاستقامة.",a:true,why:"«المفسدون: الفساد هو العُدول عن الاستقامة»."},
+{t:"tf",q:"الفخور هو المتكبر في هيئته.",a:false,why:"الفخور المتكبر في أقواله، أما المختال فالمتكبر في هيئته."},
+{t:"mcq",q:"«مجاوزة الحق والتعدي على الآخرين في أموالهم أو أعراضهم» هو:",o:["الظلم","الإسراف","الخيانة","الكفر"],a:"الظلم",why:"«الظالمون: الظلم مجاوَزة الحق، والتعدي على الآخرين في أموالهم أو أعراضهم»."}
+]},
+
+{id:"s12", title:"موانع تمنع المحبة وتضعفها", week:"الشهر الثالث · الأسبوع الرابع", lesson:`
+<ol>
+<li>الرياء وإرادة الدنيا في عمل الآخرة.</li>
+<li>هجر كلام الرحمن والجفاء منه.</li>
+<li>إضاعة الفرائض والتهاون في فعلها.</li>
+<li>الغفلة عن ذكر الله.</li>
+<li>الشح بالمال ومنعه عن الفقراء.</li>
+<li>الاشتغال بالمعاصي والملاهي الموجبة لسخط الله.</li>
+<li>مصاحبة أهل الغفلة والفساد.</li>
+<li>حب النفس وترك النصح للخلق.</li>
+<li>التسخط والتضجر من الرزايا والمصائب.</li>
+</ol>`,
+q:[
+{t:"mcq",q:"أيّ مما يلي من موانع المحبة؟",o:["هجر كلام الرحمن والجفاء منه","قراءة القرآن بالتدبر","دوام ذكره على كل حال","انكسار القلب بين يدي الله"],a:"هجر كلام الرحمن والجفاء منه",why:"هجر كلام الرحمن من الموانع، والبقية من الأسباب الجالبة للمحبة."},
+{t:"mcq",q:"أكمل: «الرياء وإرادة الدنيا في ...»",o:["عمل الآخرة","طلب الرزق","السفر","العلم الدنيوي"],a:"عمل الآخرة",why:"«الرياء وإرادة الدنيا في عمل الآخرة»."},
+{t:"tf",q:"التسخط والتضجر من الرزايا والمصائب من موانع المحبة.",a:true,why:"المانع التاسع: التسخط والتضجر من الرزايا والمصائب."},
+{t:"mcq",q:"أكمل: «حب النفس وترك ...»",o:["النصح للخلق","الطعام","الراحة","السفر"],a:"النصح للخلق",why:"«حب النفس وترك النصح للخلق»."},
+{t:"mcq",q:"«مصاحبة أهل الغفلة والفساد» تقابلها في الأسباب الجالبة:",o:["مجالسة المحبين الصادقين","إيثار محبته على محابك","الخلوة به وقت النزول الإلهي","مشاهدة بره وإحسانه"],a:"مجالسة المحبين الصادقين",why:"من الأسباب الجالبة: مجالسة المحبين الصادقين، ومن الموانع: مصاحبة أهل الغفلة والفساد."},
+{t:"tf",q:"الشح بالمال ومنعه عن الفقراء يقوّي المحبة.",a:false,why:"الشح بالمال ومنعه عن الفقراء من الموانع التي تمنع المحبة وتضعفها."}
+]},
+
+{id:"b1", bonus:true, title:"محطة إضافية: إصدارات الحملة", week:"إثراء", lesson:`
+<p><span class="term">ألا يُحب:</span></p>
+<div class="quote">الله الذي خلقك ألا يُحب؟ الذي أوجدك - هداك - رزقك - سترك - عافاك - آواك، ألا يستحق حبك؟</div>
+<p><span class="term">المرء مع من أحب:</span> روى البخاري ومسلم عن عبد الله بن مسعود رضي الله عنه قال: «جاء رجل إلى رسول الله ﷺ فقال: يا رسول الله، كيف تقول في رجل أحب قومًا ولم يلحق بهم؟ فقال رسول الله ﷺ: المرء مع من أحب».</p>
+<p>وفي حديث أنس رضي الله عنه: «قال أنس: فما فرحنا بشيء، فرحنا بقول النبي ﷺ: أنت مع من أحببت. قال أنس: فأنا أحب النبي ﷺ وأبا بكر، وعمر، وأرجو أن أكون معهم بحبي إياهم، وإن لم أعمل بمثل أعمالهم».</p>
+<div class="quote">من أوثق عرى الإيمان وعلاماته: أن يحب الرجل أخاه، لا يحبه لدنيا ولا مال ولا جاه؛ إنما يحبه لله جل جلاله.</div>
+<p><span class="term">أعمال القلوب (١٦):</span></p>
+<div class="word-grid"><span>الإخلاص</span><span>اليقين</span><span>التفكر</span><span>الخشوع</span><span>المراقبة</span><span>الورع</span><span>التوكل</span><span>المحبة</span><span>الرجاء</span><span>الشكر</span><span>الغيرة</span><span>الحياء</span><span>الخوف</span><span>الصبر</span><span>الرضا</span><span>التوبة</span></div>
+<p><span class="term">مفسدات القلوب (١٥):</span></p>
+<div class="word-grid"><span>الكبر والحسد</span><span>اتباع الهوى</span><span>الجدال والمراء</span><span>العشق</span><span>حب الدنيا</span><span>حب الرئاسة</span><span>النفاق والغرور</span><span>الغفلة</span><span>الشهوة</span><span>الترف</span><span>الكفر</span><span>الشرك</span></div>
+<p><span class="term">الأمور التي يتم بها إصلاح القلب (٧):</span></p>
+<ol>
+<li>المجاهدة: يحتاج الإنسان إلى مجاهدة دائمة ومستمرة وإلى مكابدة.</li>
+<li>كثرة ذكر الموت وزيارة القبور.</li>
+<li>مجالسة الصالحين الذين يذكرون الله عز وجل.</li>
+<li>أن يكون تعلقه بربه ومعبوده وخالقه جل جلاله.</li>
+<li>الأعمال الصالحة: «إن للحسنة نورًا في القلب، وضياءً في الوجه، وقوة في البدن، وزيادة في الرزق، ومحبة في قلوب الخلق».</li>
+<li>أن نستعمله فيما خلق له: هذا القلب خلق ليكون عبدًا لله.</li>
+<li>ذكر الله عز وجل وقراءة القرآن.</li>
+</ol>`,
+q:[
+{t:"mcq",q:"أيّ مما يلي من أعمال القلوب؟",o:["الخشوع","العشق","حب الرئاسة","الترف"],a:"الخشوع",why:"الخشوع من أعمال القلوب، والبقية من مفسدات القلوب."},
+{t:"mcq",q:"أيّ مما يلي من مفسدات القلوب؟",o:["اتباع الهوى","اليقين","المراقبة","الورع"],a:"اتباع الهوى",why:"اتباع الهوى من مفسدات القلوب، والبقية من أعمال القلوب."},
+{t:"mcq",q:"قال أنس: «فما فرحنا بشيء، فرحنا بقول النبي ﷺ: ...»",o:["أنت مع من أحببت","وماذا أعددت لها","المرء مع من أحب","لا يؤمن أحدكم"],a:"أنت مع من أحببت",why:"«فما فرحنا بشيء، فرحنا بقول النبي ﷺ: أنت مع من أحببت»."},
+{t:"mcq",q:"«إن للحسنة نورًا في ...»",o:["القلب","البيت","الطريق","المال"],a:"القلب",why:"«إن للحسنة نورًا في القلب، وضياءً في الوجه، وقوة في البدن، وزيادة في الرزق، ومحبة في قلوب الخلق»."},
+{t:"tf",q:"من أوثق عرى الإيمان أن يحب الرجل أخاه لدنياه وماله.",a:false,why:"«أن يحب الرجل أخاه، لا يحبه لدنيا ولا مال ولا جاه؛ إنما يحبه لله جل جلاله»."},
+{t:"ord",q:"رتّب نِعَم الله كما وردت في إصدار «ألا يُحب»:",items:["أوجدك","هداك","رزقك","سترك","عافاك","آواك"],why:"الذي أوجدك - هداك - رزقك - سترك - عافاك - آواك، ألا يستحق حبك."}
+]}
+];
+
+const CHALLENGES = [
+ "قراءة القرآن بالتدبر والتفهم لمعانيه وما أريد به.",
+ "التقرب إلى الله بالنوافل بعد الفرائض.",
+ "دوام ذكره على كل حال.",
+ "إيثار محبته على محابِّك.",
+ "مطالعة القلب لأسماء الله وصفاته.",
+ "مشاهدة بِرّه وإحسانه وآلائه ونِعَمِه الظاهرة والباطنة.",
+ "انكسار القلب بين يدي الله تعالى.",
+ "الخَلْوة به وقت النزول الإلهي.",
+ "مجالسة المحبين الصادقين.",
+ "مباعدة كل سبب يحول بين القلب وبين الله."
+];
+
+const ENTITY_TYPES = ["جمعية","دار نسائية","حلقة تحفيظ","مدرسة","جهة أخرى"];
+const PTS_Q = 10, PTS_CH = 5, PTS_STATION_FULL = 20;
+const MAIN = STATIONS.filter(s=>!s.bonus);
+const MAIN_TOTAL_Q = MAIN.reduce((a,s)=>a+s.q.length,0);
+
+/* ================= أدوات ================= */
+const $ = s=>document.querySelector(s);
+const view = $("#view");
+const AR = n=>String(n).replace(/\d/g,d=>"٠١٢٣٤٥٦٧٨٩"[d]);
+function esc(s){ return String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
+function shuffle(a){ a=a.slice(); for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];} return a; }
+let toastT; function toast(msg){ const t=$("#toast"); t.textContent=msg; t.hidden=false; clearTimeout(toastT); toastT=setTimeout(()=>t.hidden=true,2600); }
+function hijri(ts){ try{ return new Intl.DateTimeFormat("ar-SA-u-ca-islamic-umalqura",{day:"numeric",month:"long",year:"numeric"}).format(ts?new Date(ts):new Date()); }catch(e){ return new Date().toLocaleDateString("ar"); } }
+function ago(ts){ if(!ts) return "—"; const m=Math.round((Date.now()-ts)/60000); if(m<60) return "قبل "+AR(Math.max(m,1))+" د"; const h=Math.round(m/60); if(h<48) return "قبل "+AR(h)+" س"; return "قبل "+AR(Math.round(h/24))+" يوم"; }
+function today(){ const d=new Date(); return d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate(); }
+function baseUrl(){ return location.href.split("#")[0]; }
+async function copy(text, btn){
+  try{ await navigator.clipboard.writeText(text); toast("نُسخ الرابط"); }
+  catch(e){ const c=btn&&btn.parentElement.querySelector("code"); if(c){ const r=document.createRange(); r.selectNodeContents(c); const s=getSelection(); s.removeAllRanges(); s.addRange(r);} toast("حدّد الرابط وانسخه"); }
+}
+function linkBox(url){ return `<div class="linkbox"><code>${esc(url)}</code><button type="button" data-copy="${esc(url)}">نسخ</button></div>`; }
+function wireCopy(root){ (root||view).querySelectorAll("[data-copy]").forEach(b=>b.onclick=()=>copy(b.dataset.copy,b)); }
+function qrInto(el, url){ try{ if(window.QRCode){ new QRCode(el,{text:url,width:360,height:360,correctLevel:QRCode.CorrectLevel.M}); return true; } }catch(e){} el.closest(".qr")?.remove(); return false; }
+function csvDownload(name, rows){
+  const csv="﻿"+rows.map(r=>r.map(v=>'"'+String(v==null?"":v).replace(/"/g,'""')+'"').join(",")).join("\n");
+  const a=document.createElement("a"); a.href=URL.createObjectURL(new Blob([csv],{type:"text/csv;charset=utf-8"})); a.download=name; document.body.appendChild(a); a.click(); a.remove();
+}
+
+/* ================= الاتصال بالخادم ================= */
+const DEMO = !CONFIG.api || CONFIG.api.indexOf("@@")===0;
+let demoHandle = null;
+async function api(action, data){
+  if(DEMO){
+    if(!demoHandle) demoHandle = makeDemoServer();
+    try{ return JSON.parse(JSON.stringify(demoHandle(action, data||{}))); }catch(e){ return {error:String(e.message||e)}; }
+  }
+  try{
+    const r = await fetch(CONFIG.api,{method:"POST",body:JSON.stringify({action,data})});
+    return await r.json();
+  }catch(e){ return {error:"تعذّر الاتصال بالخادم. تحقق من الإنترنت ثم أعد المحاولة.", offline:true}; }
+}
+/* وضع تجريبي: يشغّل كود الخادم نفسه على هذا الجهاز بدل Google Sheets */
+function makeDemoServer(){
+  const KEYD="mahabbah-demo-server-v1";
+  let store={}; try{ store=JSON.parse(localStorage.getItem(KEYD))||{}; }catch(e){}
+  const persist=()=>{ try{ localStorage.setItem(KEYD,JSON.stringify(store)); }catch(e){} };
+  const mkSheet=name=>({
+    appendRow(r){ store[name].push(r.slice()); },
+    setFrozenRows(){},
+    getDataRange(){ return {getValues:()=>store[name].map(r=>r.slice())}; },
+    getRange(row,col,nr,nc){ return {setValues:v=>{ store[name][row-1]=v[0].slice(); }}; },
+    deleteRow(row){ store[name].splice(row-1,1); }
+  });
+  const SpreadsheetApp={getActive:()=>({
+    getSheetByName:n=>store[n]?mkSheet(n):null,
+    insertSheet:n=>{ store[n]=[]; return mkSheet(n); }
+  })};
+  const Utilities={DigestAlgorithm:{SHA_256:1},Charset:{UTF_8:1},
+    computeDigest:(a,s)=>{ let h=2166136261; for(const ch of s){ h^=ch.codePointAt(0); h=Math.imul(h,16777619)>>>0; } return "h"+h.toString(36); },
+    base64Encode:x=>x};
+  const LockService={getScriptLock:()=>({waitLock(){},releaseLock(){}})};
+  const code=document.getElementById("serverCode").textContent;
+  const handle=new Function("SpreadsheetApp","Utilities","LockService","ContentService",code+";return handle_;")(SpreadsheetApp,Utilities,LockService,{});
+  return (a,d)=>{ const r=handle(a,d); persist(); return r; };
+}
+
+/* ================= تخزين المشارك على جهازه ================= */
+const KEY="mahabbah-journey-v2";
+let LS={byEntity:{}};
+try{ LS=JSON.parse(localStorage.getItem(KEY))||LS; }catch(e){}
+function saveLS(){ try{ localStorage.setItem(KEY,JSON.stringify(LS)); }catch(e){} }
+let ENT=null;           // الجهة الحالية
+function bucket(){ return LS.byEntity[ENT.code] ||= {current:null,players:{}}; }
+function me(){ if(!ENT) return null; const b=bucket(); return b.players[b.current]||null; }
+function points(p){
+  if(!p) return 0; let s=0;
+  for(const k in p.stations){ const r=p.stations[k]; s+=r.best*PTS_Q+(r.full?PTS_STATION_FULL:0); }
+  for(const d in p.challenges) s+=p.challenges[d].length*PTS_CH;
+  return s;
+}
+function doneCount(p){ return MAIN.filter(s=>p&&p.stations[s.id]).length; }
+let pushT;
+function pushRemote(){
+  clearTimeout(pushT);
+  pushT=setTimeout(async()=>{
+    const p=me(); if(!p) return;
+    const r=await api("submit",{code:ENT.code,p:{
+      id:p.id,name:p.name,points:points(p),done:doneCount(p),
+      correct:MAIN.reduce((a,s)=>a+(p.stations[s.id]?p.stations[s.id].best:0),0),total:MAIN_TOTAL_Q,
+      full:MAIN.filter(s=>p.stations[s.id]&&p.stations[s.id].full).length,
+      chDays:Object.keys(p.challenges).filter(k=>p.challenges[k].length).length,
+      st:MAIN.map(s=>p.stations[s.id]?p.stations[s.id].best:"").join(",")}});
+    if(r&&r.error&&!r.offline) toast(r.error);
+  },700);
+}
+
+/* ================= الهوية في الرأس ================= */
+function setBrand(ent){
+  const box=$("#orgLogo"), nm=$("#orgName");
+  box.innerHTML=""; box.classList.remove("has");
+  if(ent&&ent.logo){ const im=new Image(); im.alt="شعار "+ent.name; im.src=ent.logo; box.appendChild(im); box.classList.add("has"); }
+  else box.innerHTML = ent?"شعار<br>الجهة":`<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21V11"/><path d="M12 11c-4 0-6-3-6-6 3 0 6 2 6 6Zm0 0c4 0 6-3 6-6-3 0-6 2-6 6Z"/></svg>`;
+  nm.textContent = ent?ent.name:"مسابقة حملة التوعية بمحبة الله";
+}
+
+/* ================= الشجرة ================= */
+function treeSVG(p,w){
+  const leaves=[[60,62],[40,74],[80,74],[28,96],[92,96],[50,90],[70,90],[38,114],[82,114],[60,108],[48,46],[72,46]];
+  let g="";
+  MAIN.forEach((s,i)=>{ const r=p&&p.stations[s.id]; const [x,y]=leaves[i];
+    g += r&&r.full ? `<circle cx="${x}" cy="${y}" r="8" fill="var(--fruit)"/>`
+      : `<ellipse cx="${x}" cy="${y}" rx="9" ry="6.5" transform="rotate(${i%2?-30:30} ${x} ${y})" fill="${r?"var(--leaf)":"var(--leaf-soft)"}" stroke="${r?"none":"var(--line)"}"/>`; });
+  return `<svg viewBox="0 0 120 170" ${w?`style="width:${w}px"`:""} role="img" aria-label="شجرة المحبة: ${AR(doneCount(p))} من ${AR(MAIN.length)} محطات">
+    <path d="M57 168 C58 150 58 135 56 120 L64 120 C62 135 62 150 63 168 Z" fill="var(--trunk)"/>
+    <path d="M60 128 C50 118 42 112 36 104 M60 126 C70 118 78 110 86 102 M60 124 L60 70" stroke="var(--trunk)" stroke-width="3" fill="none" stroke-linecap="round"/>
+    ${g}</svg>`;
+}
+
+/* ================= التوجيه ================= */
+let route="home", routeArg=null;
+function parseHash(){
+  const h=(location.hash||"").slice(1);
+  let m;
+  if((m=h.match(/^e-([A-Za-z0-9]{6})$/))) return ["play",m[1].toUpperCase()];
+  if((m=h.match(/^m-([A-Za-z0-9]{6})$/))) return ["manage",m[1].toUpperCase()];
+  if(h==="super") return ["super",null];
+  return ["home",null];
+}
+async function boot(){
+  const [r,code]=parseHash();
+  $("#nav").hidden=true; $("#scorePill").hidden=true;
+  if(r==="play"||r==="manage"){
+    if(!ENT||ENT.code!==code){
+      view.innerHTML=`<p class="muted" style="text-align:center;padding:40px 0">جارٍ تحميل المسابقة…</p>`;
+      const res=await api("getEntity",{code});
+      if(res.error){ ENT=null; setBrand(null); view.innerHTML=`<section class="card stack" style="text-align:center"><h2>تعذّر فتح المسابقة</h2><p class="muted">${esc(res.error)}</p><a class="btn" href="#">الصفحة الرئيسية</a></section>`; return; }
+      ENT=res.entity;
+    }
+    setBrand(ENT);
+    if(r==="manage") return vManage();
+    if(!ENT.active){ view.innerHTML=`<section class="card stack" style="text-align:center"><h2>${esc(ENT.name)}</h2><p class="muted">هذه المسابقة متوقفة حاليًا.</p></section>`; return; }
+    route = me()?"map":"welcome"; return render();
+  }
+  ENT=null; setBrand(null);
+  if(r==="super") return vSuper();
+  return vHome();
+}
+window.addEventListener("hashchange",boot);
+
+function go(r,arg){ route=r; routeArg=arg; render(); window.scrollTo({top:0,behavior:"instant"}); }
+function setNav(){
+  const p=me();
+  $("#nav").hidden=!p; $("#scorePill").hidden=!p;
+  if(p) $("#scoreVal").textContent=AR(points(p));
+  document.querySelectorAll("nav.bottom button").forEach(b=>{
+    const on=b.dataset.go===route||(route==="station"&&b.dataset.go==="map");
+    on?b.setAttribute("aria-current","page"):b.removeAttribute("aria-current");
+  });
+}
+document.querySelectorAll("nav.bottom button").forEach(b=>b.onclick=()=>go(b.dataset.go));
+function render(){
+  if(!me()&&route!=="welcome") route="welcome";
+  ({welcome:vWelcome,map:vMap,station:vStation,challenges:vChallenges,board:vBoard,cert:vCert})[route](routeArg);
+  setNav();
+}
+
+/* ================= الصفحة الرئيسية: تسجيل جهة ================= */
+function vHome(){
+  let etype=ENTITY_TYPES[0], logoData="";
+  view.innerHTML=`
+  <section class="hero">
+    <span class="eyebrow">مسابقة حملة التوعية بمحبة الله</span>
+    <h1>رحلة المحبة</h1>
+    <p class="slogan">إن المحب لمن يحب مطيع</p>
+    <p class="small muted" style="max-width:34em">اثنتا عشرة محطة على خطة الحملة، في كل محطة درس قصير من ملف الحملة وأسئلة سريعة ونقاط وشهادة. سجّلوا جهتكم لتحصلوا على مسابقة خاصة باسمكم وشعاركم، ولوحة لمتابعة المتسابقين.</p>
+  </section>
+  ${DEMO?`<p class="demo-note">نسخة تجريبية: البيانات تُحفظ على هذا الجهاز فقط حتى يُربط الخادم.</p>`:""}
+  <section class="card stack">
+    <h2>سجّل جهتك</h2>
+    <form id="regE" class="stack" novalidate>
+      <div class="stack" style="gap:6px"><label for="ename">اسم الجهة</label><input id="ename" type="text" maxlength="80" placeholder="مثال: جمعية الدعوة بحي النور"></div>
+      <div class="stack" style="gap:6px"><span style="font-weight:500">نوع الجهة</span>
+        <div class="chips" id="etypes">${ENTITY_TYPES.map((t,i)=>`<button type="button" class="chip" aria-pressed="${i===0}" data-t="${t}">${t}</button>`).join("")}</div></div>
+      <div class="stack" style="gap:6px"><label for="elogo">شعار الجهة (اختياري)</label>
+        <div class="filerow"><div class="logo-prev" id="logoPrev">بلا شعار</div><input id="elogo" type="file" accept="image/png,image/jpeg,image/webp"></div></div>
+      <div class="stack" style="gap:6px"><label for="epin">رمز سري لمشرف الجهة (٤ إلى ٨ أرقام)</label><input id="epin" type="password" inputmode="numeric" maxlength="8" autocomplete="new-password" placeholder="••••"></div>
+      <p class="err" id="regErr" hidden></p>
+      <button class="btn" type="submit" id="regBtn">أنشئ مسابقة الجهة</button>
+    </form>
+  </section>
+  <section class="card stack">
+    <h3>لديكم رمز جهة؟</h3>
+    <form id="goE" class="row" novalidate>
+      <input id="ecode" type="text" maxlength="6" placeholder="مثال: K7Q2MX" style="flex:2 1 160px;direction:ltr;text-align:center;letter-spacing:.15em;text-transform:uppercase">
+      <button class="btn" type="submit" style="flex:1 1 100px">دخول المسابقة</button>
+    </form>
+    <button class="link" id="goManage" type="button">دخول مشرف الجهة</button>
+  </section>
+  <p class="small muted" style="text-align:center">المحتوى كله من ملف «حملة التوعية بمحبة الله» · <a class="link" href="#super">لوحة المشرف العام</a></p>`;
+  view.querySelectorAll("#etypes .chip").forEach(c=>c.onclick=()=>{ view.querySelectorAll("#etypes .chip").forEach(x=>x.setAttribute("aria-pressed","false")); c.setAttribute("aria-pressed","true"); etype=c.dataset.t; });
+  $("#elogo").onchange=async e=>{
+    const f=e.target.files[0]; if(!f) return;
+    logoData=await shrinkImage(f,160);
+    $("#logoPrev").innerHTML=logoData?`<img src="${logoData}" alt="معاينة الشعار">`:"تعذّرت القراءة";
+  };
+  $("#regE").onsubmit=async e=>{
+    e.preventDefault();
+    const name=$("#ename").value.trim(), pin=$("#epin").value.trim(), err=$("#regErr");
+    err.hidden=true;
+    if(name.length<2){ err.textContent="اكتب اسم الجهة كما تريده أن يظهر للمتسابقين."; err.hidden=false; return; }
+    if(!/^\d{4,8}$/.test(pin)){ err.textContent="الرمز السري من ٤ إلى ٨ أرقام، احفظه لدخول لوحة المشرف."; err.hidden=false; return; }
+    $("#regBtn").disabled=true; $("#regBtn").textContent="جارٍ الإنشاء…";
+    const r=await api("registerEntity",{name,type:etype,logo:logoData,pin});
+    $("#regBtn").disabled=false; $("#regBtn").textContent="أنشئ مسابقة الجهة";
+    if(r.error){ err.textContent=r.error; err.hidden=false; return; }
+    vCreated(r.code,name);
+  };
+  const codeOf=()=>$("#ecode").value.trim().toUpperCase();
+  $("#goE").onsubmit=e=>{ e.preventDefault(); const c=codeOf(); if(c.length===6) location.hash="e-"+c; else toast("الرمز من ٦ خانات"); };
+  $("#goManage").onclick=()=>{ const c=codeOf(); if(c.length===6) location.hash="m-"+c; else { toast("اكتب رمز الجهة أولًا"); $("#ecode").focus(); } };
+}
+function shrinkImage(file,max){
+  return new Promise(res=>{
+    const fr=new FileReader();
+    fr.onload=()=>{ const im=new Image(); im.onload=()=>{
+        const k=Math.min(1,max/Math.max(im.width,im.height)); const c=document.createElement("canvas");
+        c.width=Math.round(im.width*k); c.height=Math.round(im.height*k);
+        c.getContext("2d").drawImage(im,0,0,c.width,c.height);
+        let d=c.toDataURL("image/png"); if(d.length>40000) d=c.toDataURL("image/jpeg",.85);
+        res(d.length<=45000?d:"");
+      }; im.onerror=()=>res(""); im.src=fr.result; };
+    fr.onerror=()=>res(""); fr.readAsDataURL(file);
+  });
+}
+function vCreated(code,name){
+  const play=baseUrl()+"#e-"+code, man=baseUrl()+"#m-"+code;
+  view.innerHTML=`
+  <section class="card stack pop" style="text-align:center">
+    <span class="muted small">تم إنشاء مسابقة</span>
+    <h2>${esc(name)}</h2>
+    <p class="small muted">رمز الجهة</p>
+    <div class="code-big">${code}</div>
+  </section>
+  <section class="card stack">
+    <h3>رابط المتسابقين</h3>
+    <p class="small muted">أرسلوه للطالبات والطلاب أو اعرضوا الرمز في الحلقة أو القاعة.</p>
+    ${linkBox(play)}
+    <div class="qr"><div id="qrBox"></div></div>
+  </section>
+  <section class="card stack">
+    <h3>رابط لوحة المشرف</h3>
+    <p class="small muted">يُفتح بالرمز السري الذي اخترتموه. احفظوا الرابطين والرمز السري، فلا يمكن استرجاع الرمز السري.</p>
+    ${linkBox(man)}
+  </section>
+  <div class="row"><a class="btn ghost" href="#m-${code}">افتح لوحة المشرف</a><a class="btn" href="#e-${code}">جرّب المسابقة</a></div>`;
+  wireCopy(); qrInto($("#qrBox"),play);
+}
+
+/* ================= تسجيل المتسابق ================= */
+function vWelcome(){
+  const others=Object.values(bucket().players);
+  view.innerHTML=`
+  <section class="hero">
+    <span class="eyebrow">${esc(ENT.name)} · مسابقة حملة التوعية بمحبة الله</span>
+    <h1>رحلة المحبة</h1>
+    <p class="slogan">إن المحب لمن يحب مطيع</p>
+    <div class="poem"><span>تعصي الإله وأنت تزعم حبه</span><span>هذا محالٌ في القياس شنيعُ</span><span>لو كان حبك صادقًا لأطعته</span><span>إن المحب لمن يحب مطيعُ</span></div>
+  </section>
+  <section class="card stack">
+    <h2>ابدأ رحلتك</h2>
+    <p class="muted small">اثنتا عشرة محطة على خطة الحملة الأسبوعية. في كل محطة درس قصير من ملف الحملة ثم أسئلة سريعة. كل إجابة صحيحة بـ${AR(PTS_Q)} نقاط، ونقاطك تُحسب لـ«${esc(ENT.name)}».</p>
+    <form id="reg" class="stack" novalidate>
+      <div class="stack" style="gap:6px"><label for="pname">الاسم</label><input id="pname" type="text" autocomplete="name" placeholder="اكتب اسمك كما تريده في الشهادة" maxlength="40"></div>
+      <p class="err" id="regErr" hidden></p>
+      <button class="btn" type="submit">ابدأ الرحلة</button>
+    </form>
+  </section>
+  ${others.length?`<section class="card stack"><h3>متابعة متسابق سابق على هذا الجهاز</h3>
+    <div class="stack" style="gap:8px">${others.map(o=>`<button class="st" data-pid="${o.id}" style="grid-template-columns:1fr auto"><span class="t"><b>${esc(o.name)}</b><span>${AR(doneCount(o))} من ${AR(MAIN.length)} محطة</span></span><span class="s">${AR(points(o))} نقطة</span></button>`).join("")}</div></section>`:""}`;
+  view.querySelectorAll("[data-pid]").forEach(b=>b.onclick=()=>{ bucket().current=b.dataset.pid; saveLS(); go("map"); });
+  $("#reg").onsubmit=e=>{
+    e.preventDefault();
+    const name=$("#pname").value.trim(), err=$("#regErr");
+    if(name.length<2){ err.textContent="اكتب اسمك (حرفان على الأقل) ليظهر في الشهادة."; err.hidden=false; return; }
+    const id="p"+Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+    bucket().players[id]={id,name,stations:{},challenges:{},created:Date.now()};
+    bucket().current=id; saveLS(); pushRemote(); go("map");
+  };
+}
+
+function vMap(){
+  const p=me(), n=doneCount(p), pct=Math.round(n/MAIN.length*100);
+  view.innerHTML=`
+  <section class="card tree-box">
+    ${treeSVG(p)}
+    <div class="progress-txt">
+      <span class="muted small">مرحبًا ${esc(p.name)}</span>
+      <h2>شجرة محبتك</h2>
+      <p class="small">«فالمحبة شجرة في القلب... وثمرتها طاعته». كل محطة تنهيها ورقة، وكل محطة كاملة الدرجة ثمرة.</p>
+      <div class="bar" aria-hidden="true"><i style="width:${pct}%"></i></div>
+      <span class="small muted">${AR(n)} من ${AR(MAIN.length)} محطة</span>
+    </div>
+  </section>
+  ${n===MAIN.length?`<button class="btn gold" id="toCert">أتممت الرحلة، اعرض شهادتك</button>`:""}
+  <div class="sec-h"><h2>محطات الرحلة</h2><span class="muted small">على جدول خطة الحملة</span></div>
+  <div class="stations">
+  ${STATIONS.map((s,i)=>{ const r=p.stations[s.id];
+    const cls=["st",r?"done":"",r&&r.full?"full":"",s.bonus?"bonus":""].join(" ");
+    return `<button class="${cls}" data-sid="${s.id}"><span class="n">${s.bonus?"+":AR(i+1)}</span>
+      <span class="t"><b>${s.title}</b><span>${s.week}</span></span>
+      <span class="s">${r?`${AR(r.best)}/${AR(s.q.length)}`:"ابدأ"}</span></button>`; }).join("")}
+  </div>`;
+  view.querySelectorAll("[data-sid]").forEach(b=>b.onclick=()=>go("station",b.dataset.sid));
+  const tc=$("#toCert"); if(tc) tc.onclick=()=>go("cert");
+}
+
+function vStation(sid){
+  const s=STATIONS.find(x=>x.id===sid)||STATIONS[0], idx=STATIONS.indexOf(s);
+  view.innerHTML=`
+  <div class="row" style="align-items:center;justify-content:space-between">
+    <button class="btn ghost" id="back" style="flex:none;padding:8px 14px;font-size:.95rem">→ المحطات</button>
+    <span class="muted small">${s.week}</span>
+  </div>
+  <article class="card lesson">
+    <span class="qtype">${s.bonus?"محطة إضافية":"المحطة "+AR(idx+1)}</span>
+    <h2>${s.title}</h2>
+    ${s.lesson}
+    <p class="src">المصدر: ملف حملة التوعية بمحبة الله</p>
+  </article>
+  <button class="btn" id="startQ">ابدأ أسئلة المحطة (${AR(s.q.length)} أسئلة)</button>`;
+  $("#back").onclick=()=>go("map");
+  $("#startQ").onclick=()=>quiz(s);
+}
+
+function quiz(s){
+  const qs=s.q.map(q=>({...q,o:q.o?shuffle(q.o):null,pool:q.items?shuffle(q.items):null}));
+  const res=[]; let i=0;
+  function show(){
+    const q=qs[i];
+    const typeName={mcq:"اختيار من متعدد",tf:"صح أم خطأ",ord:"ترتيب"}[q.t];
+    view.innerHTML=`
+    <div class="qhead"><span>${s.title}</span><span class="dots">${qs.map((_,k)=>`<i class="${k<i?(res[k]?"on":"x"):""} ${k===i?"cur":""}"></i>`).join("")}</span></div>
+    <section class="card stack pop">
+      <span class="qtype">${typeName} · سؤال ${AR(i+1)} من ${AR(qs.length)}</span>
+      <p class="qtext">${esc(q.q)}</p>
+      <div id="ans"></div><div id="fb"></div>
+    </section>
+    <button class="btn" id="next" hidden>${i===qs.length-1?"عرض النتيجة":"السؤال التالي"}</button>`;
+    const ans=$("#ans");
+    const finish=ok=>{ res[i]=ok;
+      $("#fb").innerHTML=`<div class="feedback ${ok?"ok":"no"}"><b>${ok?"إجابة صحيحة، +"+AR(PTS_Q)+" نقاط":"ليست الإجابة الصحيحة"}</b><span class="why">${esc(q.why)}</span></div>`;
+      $("#next").hidden=false; $("#next").focus(); };
+    if(q.t==="mcq"){
+      ans.innerHTML=`<div class="opts">${q.o.map((o,k)=>`<button class="opt" data-k="${k}">${esc(o)}</button>`).join("")}</div>`;
+      ans.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{ const ok=q.o[b.dataset.k]===q.a;
+        ans.querySelectorAll(".opt").forEach(x=>{ x.disabled=true; if(q.o[x.dataset.k]===q.a) x.classList.add("ok"); });
+        if(!ok) b.classList.add("no"); finish(ok); });
+    } else if(q.t==="tf"){
+      ans.innerHTML=`<div class="tf"><button class="opt" data-v="1">صح</button><button class="opt" data-v="0">خطأ</button></div>`;
+      ans.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{ const ok=(b.dataset.v==="1")===q.a;
+        ans.querySelectorAll(".opt").forEach(x=>{ x.disabled=true; if((x.dataset.v==="1")===q.a) x.classList.add("ok"); });
+        if(!ok) b.classList.add("no"); finish(ok); });
+    } else {
+      const picked=[];
+      const draw=locked=>{
+        ans.innerHTML=`<div class="stack"><div class="ord-picked" id="picked">${picked.map((t,k)=>{ const c=locked?(t===q.items[k]?"ok":"no"):"";
+            return `<button class="ord-item ${c}" data-k="${k}" ${locked?"disabled":""}><span class="k">${AR(k+1)}</span><span>${esc(t)}</span></button>`;}).join("")}</div>
+          ${locked?"":`<div class="ord-pool">${q.pool.map((t,k)=>picked.includes(t)?"":`<button class="ord-item" data-pk="${k}"><span class="k" style="background:var(--line);color:var(--ink)">+</span><span>${esc(t)}</span></button>`).join("")}</div>
+          <p class="muted small">اضغط عبارة مرتبة لإرجاعها.</p>`}</div>`;
+        if(locked) return;
+        ans.querySelectorAll("[data-pk]").forEach(b=>b.onclick=()=>{ picked.push(q.pool[+b.dataset.pk]);
+          if(picked.length===q.items.length){ draw(true); finish(picked.every((t,k)=>t===q.items[k])); } else draw(false); });
+        ans.querySelectorAll("#picked .ord-item").forEach(b=>b.onclick=()=>{ picked.splice(+b.dataset.k,1); draw(false); });
+      };
+      draw(false);
+    }
+    $("#next").onclick=()=>{ if(i<qs.length-1){ i++; show(); } else result(); };
+  }
+  function result(){
+    const score=res.filter(Boolean).length, full=score===qs.length, p=me(), prev=p.stations[s.id];
+    const firstTime=!prev, improved=!prev||score>prev.best;
+    if(improved) p.stations[s.id]={best:score,full,at:Date.now()};
+    saveLS(); pushRemote();
+    const all=doneCount(p)===MAIN.length;
+    view.innerHTML=`
+    <section class="card result pop">
+      ${treeSVG(p,120)}
+      <span class="muted">${s.title}</span>
+      <div class="big">${AR(score)}/${AR(qs.length)}</div>
+      ${full?`<span class="badge">ثمرة كاملة · +${AR(PTS_STATION_FULL)} نقطة إضافية</span>`:firstTime?`<span class="badge">نبتت ورقة جديدة في شجرتك</span>`:""}
+      <p class="small muted">${improved?(firstTime?"سُجلت نتيجتك.":"تحسنت نتيجتك وسُجلت."):"نتيجتك السابقة أعلى، فبقيت كما هي."}</p>
+      ${all&&firstTime?`<p><b>أتممت محطات الرحلة كلها. شهادتك جاهزة.</b></p>`:""}
+    </section>
+    <div class="row"><button class="btn ghost" id="again">أعد المحطة</button><button class="btn" id="cont">${all?"اعرض الشهادة":"المحطة التالية"}</button></div>`;
+    $("#again").onclick=()=>quiz(s);
+    $("#cont").onclick=()=>{ if(all) return go("cert"); const nx=MAIN.find(x=>!p.stations[x.id]); nx?go("station",nx.id):go("map"); };
+    setNav();
+  }
+  show();
+}
+
+function vChallenges(){
+  const p=me(), d=today(), doneToday=p.challenges[d]||[];
+  const total=Object.values(p.challenges).reduce((a,x)=>a+x.length,0);
+  const days=Object.keys(p.challenges).filter(k=>p.challenges[k].length).length;
+  view.innerHTML=`
+  <section class="stack" style="gap:6px"><h2>تحديات اليوم</h2>
+    <p class="small muted">من «الأسباب الجالبة للمحبة» في ملف الحملة. حدِّد ما عملت به اليوم، ولكل سبب ${AR(PTS_CH)} نقاط، وتبدأ القائمة من جديد كل يوم.</p></section>
+  <div class="row small muted"><span>اليوم: ${AR(doneToday.length)} من ${AR(CHALLENGES.length)}</span><span>·</span><span>المجموع: ${AR(total)} في ${AR(days)} يوم</span></div>
+  <div class="stack" style="gap:8px">
+  ${CHALLENGES.map((c,k)=>`<button class="ch" aria-pressed="${doneToday.includes(k)}" data-k="${k}"><span class="box"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="3"><path d="m5 12 4 4 10-10"/></svg></span><span>${c}<small>السبب ${AR(k+1)}</small></span></button>`).join("")}
+  </div>`;
+  view.querySelectorAll(".ch").forEach(b=>b.onclick=()=>{
+    const k=+b.dataset.k, arr=p.challenges[d]||(p.challenges[d]=[]), at=arr.indexOf(k);
+    if(at>=0) arr.splice(at,1); else { arr.push(k); toast("+"+AR(PTS_CH)+" نقاط، بارك الله فيك"); }
+    saveLS(); pushRemote(); vChallenges(); setNav();
+  });
+}
+
+async function vBoard(){
+  const p=me();
+  view.innerHTML=`
+  <section class="stack" style="gap:6px"><h2>المنافسة</h2><p class="small muted">ترتيب متسابقي «${esc(ENT.name)}»، وموقع جهتكم بين الجهات المشاركة.</p></section>
+  <section class="card" id="boardBody"><p class="muted">جارٍ تحميل الترتيب…</p></section>
+  <section class="stack"><h3>أوسمتي</h3><div class="badges">${badgesHTML(p)}</div></section>
+  <button class="btn ghost" id="newP">متسابق جديد على هذا الجهاز</button>`;
+  $("#newP").onclick=()=>{ bucket().current=null; saveLS(); go("welcome"); };
+  clearTimeout(pushT); await flushPush();
+  const r=await api("board",{code:ENT.code});
+  if(route!=="board") return;
+  const body=$("#boardBody");
+  if(r.error){ body.innerHTML=`<p class="err">${esc(r.error)}</p>`; return; }
+  body.innerHTML=`
+    <div class="cmp" style="margin-bottom:14px">
+      <div class="tile gold"><span>ترتيب جهتكم</span><b>${r.rank?AR(r.rank):"—"} <small style="font-size:.9rem;color:var(--muted)">من ${AR(r.of)}</small></b></div>
+      <div class="tile"><span>متسابقو جهتكم</span><b>${AR(r.mine.participants)}</b></div>
+    </div>
+    <div class="tbl"><table><thead><tr><th>#</th><th>المتسابق</th><th>المحطات</th><th style="text-align:left">النقاط</th></tr></thead><tbody>
+    ${r.rows.map((x,k)=>`<tr ${x.id===p.id?'style="background:var(--leaf-soft)"':""}><td>${AR(k+1)}</td><td><b>${esc(x.name)}</b>${x.id===p.id?' <span class="pill done">أنت</span>':""}</td><td>${AR(x.done)}/${AR(MAIN.length)}</td><td class="num"><b>${AR(x.points)}</b></td></tr>`).join("")}
+    </tbody></table></div>`;
+}
+async function flushPush(){
+  const p=me(); if(!p) return;
+  await api("submit",{code:ENT.code,p:{id:p.id,name:p.name,points:points(p),done:doneCount(p),
+    correct:MAIN.reduce((a,s)=>a+(p.stations[s.id]?p.stations[s.id].best:0),0),total:MAIN_TOTAL_Q,
+    full:MAIN.filter(s=>p.stations[s.id]&&p.stations[s.id].full).length,
+    chDays:Object.keys(p.challenges).filter(k=>p.challenges[k].length).length,
+    st:MAIN.map(s=>p.stations[s.id]?p.stations[s.id].best:"").join(",")}});
+}
+
+function badgeIcon(kind){
+  return kind==="fruit"
+    ? `<svg viewBox="0 0 40 40"><circle cx="20" cy="22" r="12" fill="var(--fruit)"/><path d="M20 10c0-4 3-6 6-6" stroke="var(--trunk)" stroke-width="2" fill="none"/></svg>`
+    : `<svg viewBox="0 0 40 40"><path d="M20 34C8 30 6 16 20 6c14 10 12 24 0 28Z" fill="var(--leaf)"/><path d="M20 34V12" stroke="var(--card)" stroke-width="1.6"/></svg>`;
+}
+function badgesHTML(p){
+  const n=doneCount(p), fulls=MAIN.filter(s=>p.stations[s.id]&&p.stations[s.id].full).length;
+  const chDays=Object.keys(p.challenges).filter(k=>p.challenges[k].length).length;
+  const list=[
+    ["leaf","أول ورقة","أنهِ محطة واحدة",n>=1],
+    ["leaf","الشهر الأول","أنهِ المحطات ١ - ٤",["s1","s2","s3","s4"].every(k=>p.stations[k])],
+    ["leaf","الشهر الثاني","أنهِ المحطات ٥ - ٨",["s5","s6","s7","s8"].every(k=>p.stations[k])],
+    ["leaf","الشهر الثالث","أنهِ المحطات ٩ - ١٢",["s9","s10","s11","s12"].every(k=>p.stations[k])],
+    ["fruit","أول ثمرة","درجة كاملة في محطة",fulls>=1],
+    ["fruit","شجرة مثمرة","درجة كاملة في كل المحطات",fulls===MAIN.length],
+    ["leaf","مداومة","تحديات في ٣ أيام",chDays>=3],
+    ["fruit","المحطة الإضافية","أنهِ محطة الإصدارات",!!p.stations.b1],
+  ];
+  return list.map(([k,t,d,on])=>`<div class="bdg ${on?"":"off"}">${badgeIcon(k)}<b>${t}</b><span class="small muted">${d}</span></div>`).join("");
+}
+
+/* ================= الشهادة ================= */
+async function vCert(){
+  const p=me(), n=doneCount(p);
+  if(n<MAIN.length){
+    view.innerHTML=`<section class="card stack" style="text-align:center;align-items:center">${treeSVG(p,120)}
+      <h2>الشهادة تنتظرك</h2><p class="muted">تُفتح الشهادة بعد إتمام المحطات الاثنتي عشرة. بقي لك ${AR(MAIN.length-n)} محطة.</p>
+      <button class="btn" id="goMap">أكمل الرحلة</button></section>`;
+    $("#goMap").onclick=()=>go("map"); return;
+  }
+  view.innerHTML=`<section class="stack" style="gap:6px"><h2>شهادة إتمام رحلة المحبة</h2><p class="small muted">اضغط مطولًا على الشهادة لحفظها في الجوال، أو استخدم زر الحفظ.</p></section>
+  <canvas id="certCanvas" width="1600" height="1130" aria-label="شهادة ${esc(p.name)}"></canvas>
+  <img id="certImg" alt="شهادة ${esc(p.name)}" hidden style="width:100%;border-radius:10px;border:1px solid var(--line)">
+  <div class="row"><button class="btn" id="dl">حفظ الشهادة صورة</button><button class="btn ghost" id="pr">طباعة</button></div>`;
+  await drawCert(p);
+  $("#dl").onclick=()=>{ $("#certCanvas").toBlob(b=>{ const a=document.createElement("a"); a.href=URL.createObjectURL(b); a.download="شهادة-رحلة-المحبة.png"; document.body.appendChild(a); a.click(); a.remove(); toast("إن لم يبدأ التنزيل، اضغط مطولًا على الشهادة واحفظها"); }); };
+  $("#pr").onclick=()=>{ try{ window.print(); }catch(e){} toast("إن لم تظهر نافذة الطباعة، احفظ الصورة ثم اطبعها"); };
+}
+async function drawCert(p){
+  const c=$("#certCanvas"), x=c.getContext("2d"), W=c.width, H=c.height;
+  try{ await Promise.all(['700 80px "Reem Kufi"','400 40px "Amiri"','700 40px "Amiri"','500 30px "IBM Plex Sans Arabic"'].map(f=>document.fonts.load(f))); }catch(e){}
+  const leaf="#2F6B4F", fruit="#B9862A", ink="#1C2A22", muted="#5D6B61";
+  x.fillStyle="#FBFBF7"; x.fillRect(0,0,W,H);
+  x.strokeStyle=leaf; x.lineWidth=6; x.strokeRect(40,40,W-80,H-80);
+  x.strokeStyle=fruit; x.lineWidth=2; x.strokeRect(58,58,W-116,H-116);
+  const leafAt=(cx,cy,rot)=>{ x.save(); x.translate(cx,cy); x.rotate(rot); x.fillStyle=leaf; x.beginPath(); x.ellipse(0,0,26,14,0,0,Math.PI*2); x.fill(); x.restore(); };
+  [[100,100,.6],[W-100,100,-.6],[100,H-100,-.6],[W-100,H-100,.6]].forEach(a=>leafAt(...a));
+  x.direction="rtl"; x.textAlign="center";
+  let top=150;
+  if(ENT.logo){ try{ const im=await new Promise((res,rej)=>{const i=new Image(); i.onload=()=>res(i); i.onerror=rej; i.src=ENT.logo;}); const h=110, w=im.width*h/im.height; x.drawImage(im,W/2-w/2,top-50,w,h); top+=85; }catch(e){} }
+  x.fillStyle=muted; x.font='500 38px "IBM Plex Sans Arabic", Tahoma, sans-serif'; x.fillText(ENT.name,W/2,top+10); top+=20;
+  x.fillStyle=leaf; x.font='700 104px "Reem Kufi", Tahoma, sans-serif'; x.fillText("شهادة إتمام",W/2,top+120);
+  x.fillStyle=ink; x.font='400 52px "Amiri", serif'; x.fillText("تشهد مسابقة «رحلة المحبة» ضمن حملة التوعية بمحبة الله بأن",W/2,top+220);
+  x.fillStyle=fruit; x.font='700 116px "Amiri", serif'; x.fillText(p.name,W/2,top+360);
+  x.fillStyle=ink; x.font='400 50px "Amiri", serif'; x.fillText("وذلك لإتمام محطات الرحلة الاثنتي عشرة بمجموع "+AR(points(p))+" نقطة",W/2,top+470);
+  x.fillStyle=leaf; x.font='700 62px "Amiri", serif'; x.fillText("إن المحب لمن يحب مطيع",W/2,top+590);
+  x.fillStyle=muted; x.font='500 34px "IBM Plex Sans Arabic", Tahoma, sans-serif'; x.fillText(hijri(),W/2,H-100);
+  try{ const im=$("#certImg"); im.src=c.toDataURL("image/png"); im.hidden=false; c.hidden=true; }catch(e){}
+}
+
+/* ================= لوحة مشرف الجهة ================= */
+let MAN={pin:null,data:null,sort:"points"};
+function pinForm(title,sub,onOk,label){
+  view.innerHTML=`<section class="card stack" style="max-width:420px;margin-inline:auto;width:100%">
+    <h2>${title}</h2><p class="small muted">${sub}</p>
+    <form id="pinF" class="stack" novalidate>
+      <label for="pin">${label||"الرمز السري"}</label>
+      <input id="pin" type="password" ${label?"":'inputmode="numeric"'} autocomplete="current-password" maxlength="40">
+      <p class="err" id="pinErr" hidden></p>
+      <button class="btn" type="submit" id="pinBtn">دخول</button>
+    </form>
+    <a class="link" href="#">الصفحة الرئيسية</a></section>`;
+  $("#pin").focus();
+  $("#pinF").onsubmit=async e=>{ e.preventDefault(); $("#pinBtn").disabled=true;
+    const err=await onOk($("#pin").value.trim());
+    if(err){ $("#pinBtn").disabled=false; $("#pinErr").textContent=err; $("#pinErr").hidden=false; } };
+}
+async function vManage(){
+  if(MAN.pin && MAN.code===ENT.code) return loadManage();
+  pinForm("لوحة مشرف "+esc(ENT.name),"اكتب الرمز السري الذي اخترتموه عند تسجيل الجهة.",async pin=>{
+    const r=await api("manage",{code:ENT.code,pin});
+    if(r.error) return r.error;
+    MAN={pin,code:ENT.code,data:r,sort:"points"}; drawManage();
+  });
+}
+async function loadManage(){
+  const r=await api("manage",{code:ENT.code,pin:MAN.pin});
+  if(r.error){ MAN.pin=null; return vManage(); }
+  MAN.data=r; drawManage();
+}
+function pctOf(p){ return p.total?Math.round(p.correct/p.total*100):0; }
+function drawManage(){
+  const r=MAN.data, ps=r.participants.slice(), m=r.mine, g=r.global;
+  const sorters={points:(a,b)=>b.points-a.points,done:(a,b)=>b.done-a.done||b.points-a.points,pct:(a,b)=>pctOf(b)-pctOf(a),updated:(a,b)=>b.updated-a.updated,name:(a,b)=>a.name.localeCompare(b.name,"ar")};
+  ps.sort(sorters[MAN.sort]);
+  const perStation=MAIN.map((s,i)=>{ const vals=ps.map(p=>String(p.st||"").split(",")[i]).filter(v=>v!==""&&v!=null);
+    return {title:s.title,n:vals.length,avg:vals.length?Math.round(vals.reduce((a,v)=>a+(+v),0)/vals.length/s.q.length*100):0}; });
+  const play=baseUrl()+"#e-"+ENT.code;
+  view.innerHTML=`
+  <section class="sec-h"><div><span class="muted small">لوحة المشرف · رمز الجهة <b style="direction:ltr;display:inline-block">${ENT.code}</b></span><h2>${esc(ENT.name)}</h2></div>
+    <button class="btn ghost" id="refresh" style="flex:none;padding:6px 12px;font-size:.9rem">تحديث</button></section>
+  ${ENT.active?"":`<p class="demo-note">أوقف المشرف العام هذه المسابقة، فلا تُستقبل نتائج جديدة.</p>`}
+  <div class="tiles">
+    <div class="tile"><span>المتسابقون</span><b>${AR(m.participants)}</b></div>
+    <div class="tile"><span>أتمّوا الرحلة</span><b>${AR(m.completed)}</b></div>
+    <div class="tile gold"><span>المتميزون</span><b>${AR(m.distinguished)}</b></div>
+    <div class="tile"><span>متوسط الدرجة</span><b>${AR(m.avgScore)}٪</b></div>
+  </div>
+  <p class="small muted">المتميز: من أتم المحطات الاثنتي عشرة بنسبة إجابات صحيحة ${AR(r.threshold)}٪ فأكثر.</p>
+
+  <section class="card stack">
+    <h3>جهتكم بين الجهات</h3>
+    <div class="cmp">
+      <div class="tile gold"><span>ترتيب الجهة بالنقاط</span><b>${r.rank?AR(r.rank):"—"} <small style="font-size:.85rem;color:var(--muted)">من ${AR(r.of)} جهة</small></b></div>
+      <div class="tile"><span>متسابقو كل الجهات</span><b>${AR(g.participants)}</b></div>
+    </div>
+    <div class="hbars">
+      <div class="hbar"><span class="lbl">نسبة الإتمام: جهتكم</span><span class="trk"><i style="width:${m.avgDone}%"></i></span><span class="v">${AR(m.avgDone)}٪</span></div>
+      <div class="hbar"><span class="lbl">نسبة الإتمام: المجمل</span><span class="trk"><i style="width:${g.avgDone}%;background:var(--muted)"></i></span><span class="v">${AR(g.avgDone)}٪</span></div>
+      <div class="hbar"><span class="lbl">متوسط الدرجة: جهتكم</span><span class="trk"><i style="width:${m.avgScore}%"></i></span><span class="v">${AR(m.avgScore)}٪</span></div>
+      <div class="hbar"><span class="lbl">متوسط الدرجة: المجمل</span><span class="trk"><i style="width:${g.avgScore}%;background:var(--muted)"></i></span><span class="v">${AR(g.avgScore)}٪</span></div>
+    </div>
+    <p class="small muted">أرقام المجمل لكل الجهات دون أسماء أو تفاصيل متسابقيها.</p>
+  </section>
+
+  <section class="card stack">
+    <h3>المحطات</h3>
+    <div class="hbars">${perStation.map((s,i)=>`<div class="hbar"><span class="lbl">${AR(i+1)}. ${s.title}</span><span class="trk"><i style="width:${m.participants?Math.round(s.n/m.participants*100):0}%"></i></span><span class="v">${AR(s.n)}</span></div>`).join("")}</div>
+    <p class="small muted">طول الشريط: من أنهى المحطة من متسابقيكم.</p>
+  </section>
+
+  <section class="card stack">
+    <div class="sec-h"><h3>المتسابقون</h3><button class="link" id="csv" type="button">تصدير Excel (CSV)</button></div>
+    ${ps.length?`<div class="tbl wide"><table><thead><tr>
+      <th class="sort" data-s="name">الاسم</th><th class="sort" data-s="done">المحطات</th><th class="sort" data-s="pct">الدرجة</th><th class="sort" data-s="points">النقاط</th><th class="sort" data-s="updated">آخر نشاط</th><th></th></tr></thead><tbody>
+      ${ps.map(p=>`<tr><td><b>${esc(p.name)}</b> ${p.dist?'<span class="pill dist">متميز</span>':p.done>=MAIN.length?'<span class="pill done">أتم</span>':""}</td>
+        <td>${AR(p.done)}/${AR(MAIN.length)}</td><td>${AR(pctOf(p))}٪</td><td><b>${AR(p.points)}</b></td><td class="small muted">${ago(p.updated)}</td>
+        <td><span class="confirm" data-id="${esc(p.id)}"><button class="iconbtn" data-del>حذف</button></span></td></tr>`).join("")}
+      </tbody></table></div>`:`<p class="muted">لم يبدأ أحد بعد. أرسلوا رابط المتسابقين أو اعرضوا الرمز.</p>`}
+  </section>
+
+  <section class="card stack">
+    <h3>رابط المتسابقين</h3>
+    ${linkBox(play)}
+    <div class="qr"><div id="qrBox"></div></div>
+  </section>`;
+  wireCopy(); qrInto($("#qrBox"),play);
+  $("#refresh").onclick=loadManage;
+  view.querySelectorAll("th.sort").forEach(th=>th.onclick=()=>{ MAN.sort=th.dataset.s; drawManage(); });
+  view.querySelectorAll("[data-del]").forEach(b=>b.onclick=()=>{
+    const box=b.parentElement; const id=box.dataset.id;
+    box.innerHTML=`<span class="small">حذف نهائي؟</span><button class="iconbtn" data-yes>نعم</button><button class="iconbtn ok" data-no>لا</button>`;
+    box.querySelector("[data-no]").onclick=drawManage;
+    box.querySelector("[data-yes]").onclick=async()=>{ const r=await api("removeParticipant",{code:ENT.code,pin:MAN.pin,id}); if(r.error) toast(r.error); else toast("حُذف المتسابق"); loadManage(); };
+  });
+  $("#csv")?.addEventListener("click",()=>csvDownload("متسابقو-"+ENT.name+".csv",[["الاسم","المحطات المنجزة","نسبة الإجابات","النقاط","محطات بدرجة كاملة","أيام التحديات","متميز","آخر نشاط"],
+    ...ps.map(p=>[p.name,p.done,pctOf(p)+"%",p.points,p.full,p.chDays,p.dist?"نعم":"",p.updated?new Date(p.updated).toLocaleString("ar"):""])]));
+}
+
+/* ================= لوحة المشرف العام ================= */
+let SUP={key:null,data:null,sort:"participants"};
+async function vSuper(){
+  if(SUP.key) return loadSuper();
+  pinForm("لوحة المشرف العام","للاطلاع على كل الجهات المشاركة ونتائجها المجملة.",async key=>{
+    const r=await api("superStats",{key}); if(r.error) return r.error;
+    SUP={key,data:r,sort:"participants"}; drawSuper();
+  },"مفتاح المشرف العام");
+}
+async function loadSuper(){ const r=await api("superStats",{key:SUP.key}); if(r.error){ SUP.key=null; return vSuper(); } SUP.data=r; drawSuper(); }
+function drawSuper(){
+  const r=SUP.data, t=r.totals, es=r.entities.slice();
+  const s={participants:(a,b)=>b.participants-a.participants,points:(a,b)=>b.points-a.points,distinguished:(a,b)=>b.distinguished-a.distinguished,avgDone:(a,b)=>b.avgDone-a.avgDone,created:(a,b)=>b.created-a.created,lastActive:(a,b)=>b.lastActive-a.lastActive};
+  es.sort(s[SUP.sort]);
+  const active=es.filter(e=>e.participants>0).length;
+  const types={}; es.forEach(e=>{ types[e.type]=(types[e.type]||0)+1; });
+  const maxType=Math.max(1,...Object.values(types));
+  view.innerHTML=`
+  <section class="sec-h"><div><span class="muted small">مسابقة رحلة المحبة</span><h2>لوحة المشرف العام</h2></div>
+    <button class="btn ghost" id="refresh" style="flex:none;padding:6px 12px;font-size:.9rem">تحديث</button></section>
+  <div class="tiles">
+    <div class="tile"><span>الجهات المسجلة</span><b>${AR(es.length)}</b></div>
+    <div class="tile"><span>المتسابقون</span><b>${AR(t.participants)}</b></div>
+    <div class="tile"><span>أتمّوا الرحلة</span><b>${AR(t.completed)}</b></div>
+    <div class="tile gold"><span>المتميزون</span><b>${AR(t.distinguished)}</b></div>
+  </div>
+  <div class="tiles">
+    <div class="tile"><span>جهات بدأ متسابقوها</span><b>${AR(active)}</b></div>
+    <div class="tile"><span>نسبة الإتمام</span><b>${AR(t.avgDone)}٪</b></div>
+    <div class="tile"><span>متوسط الدرجة</span><b>${AR(t.avgScore)}٪</b></div>
+    <div class="tile"><span>آخر نشاط</span><b style="font-size:1.05rem">${ago(t.lastActive)}</b></div>
+  </div>
+  <p class="small muted">المتميز: من أتم المحطات الاثنتي عشرة بنسبة إجابات صحيحة ${AR(r.threshold)}٪ فأكثر.</p>
+  ${es.length?`<section class="card stack"><h3>الجهات حسب النوع</h3><div class="hbars">${Object.entries(types).sort((a,b)=>b[1]-a[1]).map(([k,v])=>`<div class="hbar"><span class="lbl">${esc(k)}</span><span class="trk"><i style="width:${v/maxType*100}%"></i></span><span class="v">${AR(v)}</span></div>`).join("")}</div></section>`:""}
+  <section class="card stack">
+    <div class="sec-h"><h3>الجهات المشاركة</h3><button class="link" id="csv" type="button">تصدير Excel (CSV)</button></div>
+    ${es.length?`<div class="tbl wide"><table><thead><tr>
+      <th>الجهة</th><th class="sort" data-s="participants">المتسابقون</th><th class="sort" data-s="distinguished">المتميزون</th><th class="sort" data-s="avgDone">الإتمام</th><th class="sort" data-s="points">النقاط</th><th class="sort" data-s="lastActive">آخر نشاط</th><th></th></tr></thead><tbody>
+      ${es.map(e=>`<tr><td><b>${esc(e.name)}</b> ${e.active?"":'<span class="pill off">متوقفة</span>'}<br><span class="small muted">${esc(e.type)} · <span style="direction:ltr;display:inline-block">${e.code}</span></span></td>
+        <td>${AR(e.participants)}</td><td>${AR(e.distinguished)}</td><td>${AR(e.avgDone)}٪</td><td>${AR(e.points)}</td><td class="small muted">${ago(e.lastActive)}</td>
+        <td><button class="iconbtn ${e.active?"":"ok"}" data-tog="${e.code}" data-on="${e.active?0:1}">${e.active?"إيقاف":"تفعيل"}</button></td></tr>`).join("")}
+      </tbody></table></div>`:`<p class="muted">لم تُسجَّل أي جهة بعد. شاركوا رابط الصفحة الرئيسية مع الجهات لتسجّل.</p>`}
+  </section>
+  <section class="card stack"><h3>رابط تسجيل الجهات</h3>${linkBox(baseUrl())}</section>`;
+  wireCopy();
+  $("#refresh").onclick=loadSuper;
+  view.querySelectorAll("th.sort").forEach(th=>th.onclick=()=>{ SUP.sort=th.dataset.s; drawSuper(); });
+  view.querySelectorAll("[data-tog]").forEach(b=>b.onclick=async()=>{ const r=await api("setEntityActive",{key:SUP.key,code:b.dataset.tog,active:b.dataset.on==="1"}); if(r.error) toast(r.error); loadSuper(); });
+  $("#csv")?.addEventListener("click",()=>csvDownload("جهات-رحلة-المحبة.csv",[["الجهة","النوع","الرمز","المتسابقون","أتموا","المتميزون","نسبة الإتمام","متوسط الدرجة","النقاط","الحالة"],
+    ...es.map(e=>[e.name,e.type,e.code,e.participants,e.completed,e.distinguished,e.avgDone+"%",e.avgScore+"%",e.points,e.active?"فعالة":"متوقفة"])]));
+}
+
+boot();
+
+</script>
+</body></html>
