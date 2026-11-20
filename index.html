@@ -584,20 +584,24 @@ function points(p){
   return s;
 }
 function doneCount(p){ return MAIN.filter(s=>p&&p.stations[s.id]).length; }
-let pushT;
-function pushRemote(){
-  clearTimeout(pushT);
-  pushT=setTimeout(async()=>{
-    const p=me(); if(!p) return;
-    const r=await api("submit",{code:ENT.code,p:{
-      id:p.id,name:p.name,points:points(p),done:doneCount(p),
-      correct:MAIN.reduce((a,s)=>a+(p.stations[s.id]?p.stations[s.id].best:0),0),total:MAIN_TOTAL_Q,
-      full:MAIN.filter(s=>p.stations[s.id]&&p.stations[s.id].full).length,
-      chDays:Object.keys(p.challenges).filter(k=>p.challenges[k].length).length,
-      st:MAIN.map(s=>p.stations[s.id]?p.stations[s.id].best:"").join(",")}});
-    if(r&&r.error&&!r.offline) toast(r.error);
-  },700);
+let pushT, dirty=false, pushing=null;
+function payload(p){
+  return {id:p.id,name:p.name,points:points(p),done:doneCount(p),
+    correct:MAIN.reduce((a,s)=>a+(p.stations[s.id]?p.stations[s.id].best:0),0),
+    total:MAIN.reduce((a,s)=>a+(p.stations[s.id]?s.q.length:0),0),
+    full:MAIN.filter(s=>p.stations[s.id]&&p.stations[s.id].full).length,
+    chDays:Object.keys(p.challenges).filter(k=>p.challenges[k].length).length,
+    st:MAIN.map(s=>p.stations[s.id]?p.stations[s.id].best:"").join(",")};
 }
+async function sendNow(){
+  clearTimeout(pushT);
+  if(pushing) await pushing;
+  const p=me(); if(!p||!dirty) return;
+  dirty=false;
+  pushing=api("submit",{code:ENT.code,p:payload(p)}).then(r=>{ if(r&&r.error){ dirty=true; if(!r.offline) toast(r.error); } }).finally(()=>pushing=null);
+  await pushing;
+}
+function pushRemote(){ dirty=true; clearTimeout(pushT); pushT=setTimeout(sendNow,700); }
 
 /* ================= الهوية في الرأس ================= */
 function setBrand(ent){
@@ -930,7 +934,7 @@ async function vBoard(){
   <section class="stack"><h3>أوسمتي</h3><div class="badges">${badgesHTML(p)}</div></section>
   <button class="btn ghost" id="newP">متسابق جديد على هذا الجهاز</button>`;
   $("#newP").onclick=()=>{ bucket().current=null; saveLS(); go("welcome"); };
-  clearTimeout(pushT); await flushPush();
+  await sendNow();
   const r=await api("board",{code:ENT.code});
   if(route!=="board") return;
   const body=$("#boardBody");
@@ -944,15 +948,6 @@ async function vBoard(){
     ${r.rows.map((x,k)=>`<tr ${x.id===p.id?'style="background:var(--leaf-soft)"':""}><td>${AR(k+1)}</td><td><b>${esc(x.name)}</b>${x.id===p.id?' <span class="pill done">أنت</span>':""}</td><td>${AR(x.done)}/${AR(MAIN.length)}</td><td class="num"><b>${AR(x.points)}</b></td></tr>`).join("")}
     </tbody></table></div>`;
 }
-async function flushPush(){
-  const p=me(); if(!p) return;
-  await api("submit",{code:ENT.code,p:{id:p.id,name:p.name,points:points(p),done:doneCount(p),
-    correct:MAIN.reduce((a,s)=>a+(p.stations[s.id]?p.stations[s.id].best:0),0),total:MAIN_TOTAL_Q,
-    full:MAIN.filter(s=>p.stations[s.id]&&p.stations[s.id].full).length,
-    chDays:Object.keys(p.challenges).filter(k=>p.challenges[k].length).length,
-    st:MAIN.map(s=>p.stations[s.id]?p.stations[s.id].best:"").join(",")}});
-}
-
 function badgeIcon(kind){
   return kind==="fruit"
     ? `<svg viewBox="0 0 40 40"><circle cx="20" cy="22" r="12" fill="var(--fruit)"/><path d="M20 10c0-4 3-6 6-6" stroke="var(--trunk)" stroke-width="2" fill="none"/></svg>`
