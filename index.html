@@ -213,6 +213,9 @@ input[type=password],input[inputmode]{width:100%;font:inherit;padding:11px 12px;
 th.sort{cursor:pointer}
 th.sort::after{content:" ↕";color:var(--muted);font-size:.7rem}
 .tbl.wide table{min-width:600px}
+.credit{text-align:center;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:.88rem;color:var(--muted);padding-block:6px 0}
+.credit .by{font-family:var(--f-quote);font-size:1.15rem;color:var(--ink)}
+.credit .link{margin-top:6px}
 </style>
 </head><body>
 <div class="wrap" id="app">
@@ -705,7 +708,7 @@ function vHome(){
     </form>
     <button class="link" id="goManage" type="button">دخول مشرف الجهة</button>
   </section>
-  <p class="small muted" style="text-align:center">المحتوى كله من ملف «حملة التوعية بمحبة الله» · <a class="link" href="#super">لوحة المشرف العام</a></p>`;
+  <footer class="credit"><p>المحتوى كله من ملف «حملة التوعية بمحبة الله»</p><p class="by">جمع وإعداد الدكتور / محمد بن يحيى التوم العسيري</p><a class="link" href="#super">لوحة المشرف العام</a></footer>`;
   view.querySelectorAll("#etypes .chip").forEach(c=>c.onclick=()=>{ view.querySelectorAll("#etypes .chip").forEach(x=>x.setAttribute("aria-pressed","false")); c.setAttribute("aria-pressed","true"); etype=c.dataset.t; });
   $("#elogo").onchange=async e=>{
     const f=e.target.files[0]; if(!f) return;
@@ -785,7 +788,8 @@ function vWelcome(){
     </form>
   </section>
   ${others.length?`<section class="card stack"><h3>متابعة متسابق سابق على هذا الجهاز</h3>
-    <div class="stack" style="gap:8px">${others.map(o=>`<button class="st" data-pid="${o.id}" style="grid-template-columns:1fr auto"><span class="t"><b>${esc(o.name)}</b><span>${AR(doneCount(o))} من ${AR(MAIN.length)} محطة</span></span><span class="s">${AR(points(o))} نقطة</span></button>`).join("")}</div></section>`:""}`;
+    <div class="stack" style="gap:8px">${others.map(o=>`<button class="st" data-pid="${o.id}" style="grid-template-columns:1fr auto"><span class="t"><b>${esc(o.name)}</b><span>${AR(doneCount(o))} من ${AR(MAIN.length)} محطة</span></span><span class="s">${AR(points(o))} نقطة</span></button>`).join("")}</div></section>`:""}
+  <footer class="credit"><p>المحتوى كله من ملف «حملة التوعية بمحبة الله»</p><p class="by">جمع وإعداد الدكتور / محمد بن يحيى التوم العسيري</p></footer>`;
   view.querySelectorAll("[data-pid]").forEach(b=>b.onclick=()=>{ bucket().current=b.dataset.pid; saveLS(); go("map"); });
   $("#reg").onsubmit=e=>{
     e.preventDefault();
@@ -1004,7 +1008,8 @@ async function drawCert(p){
   x.fillStyle=fruit; x.font='700 116px "Amiri", serif'; x.fillText(p.name,W/2,top+360);
   x.fillStyle=ink; x.font='400 50px "Amiri", serif'; x.fillText("وذلك لإتمام محطات الرحلة الاثنتي عشرة بمجموع "+AR(points(p))+" نقطة",W/2,top+470);
   x.fillStyle=leaf; x.font='700 62px "Amiri", serif'; x.fillText("إن المحب لمن يحب مطيع",W/2,top+590);
-  x.fillStyle=muted; x.font='500 34px "IBM Plex Sans Arabic", Tahoma, sans-serif'; x.fillText(hijri(),W/2,H-100);
+  x.fillStyle=muted; x.font='400 32px "Amiri", serif'; x.fillText("من ملف حملة التوعية بمحبة الله · جمع وإعداد الدكتور / محمد بن يحيى التوم العسيري",W/2,H-150);
+  x.font='500 30px "IBM Plex Sans Arabic", Tahoma, sans-serif'; x.fillText(hijri(),W/2,H-95);
   try{ const im=$("#certImg"); im.src=c.toDataURL("image/png"); im.hidden=false; c.hidden=true; }catch(e){}
 }
 
